@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSync - Modern Healthcare Appointment Platform</title>
+<!-- Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#003631",
+            "primary-fixed": "#b5ede5",
+            "secondary-container": "#fd651e",
+            "secondary-fixed": "#ffdbce",
+            "surface-container-high": "#dee8ff",
+            "on-error-container": "#93000a",
+            "on-background": "#111c2d",
+            "on-secondary-fixed": "#370e00",
+            "secondary": "#a73a00",
+            "surface-tint": "#316761",
+            "on-secondary-container": "#571a00",
+            "tertiary-fixed": "#9cf2e8",
+            "surface-dim": "#cfdaf2",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#004f49",
+            "on-tertiary-container": "#6dc2b9",
+            "outline": "#707977",
+            "primary-fixed-dim": "#9ad1c9",
+            "on-error": "#ffffff",
+            "inverse-surface": "#263143",
+            "secondary-fixed-dim": "#ffb599",
+            "on-surface": "#111c2d",
+            "surface-container-highest": "#d8e3fb",
+            "tertiary": "#003632",
+            "on-primary-container": "#87beb6",
+            "inverse-primary": "#9ad1c9",
+            "on-primary-fixed": "#00201d",
+            "primary-container": "#134e48",
+            "on-tertiary-fixed-variant": "#00504a",
+            "on-surface-variant": "#404947",
+            "background": "#f9f9ff",
+            "surface-container-low": "#f0f3ff",
+            "surface-variant": "#d8e3fb",
+            "inverse-on-surface": "#ecf1ff",
+            "surface-bright": "#f9f9ff",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bfc8c6",
+            "on-primary-fixed-variant": "#154f49",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed-dim": "#80d5cb",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#7f2b00",
+            "error-container": "#ffdad6",
+            "surface": "#f9f9ff",
+            "on-tertiary-fixed": "#00201d",
+            "surface-container": "#e7eeff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem",
+            "sidebar-width": "17.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "caption": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .shadow-ambient-card {
+      box-shadow: 0 2px 8px -2px rgba(19, 78, 72, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+    }
+    .shadow-floating-badge {
+      box-shadow: 0 12px 28px -4px rgba(19, 78, 72, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+    }
+  </style>
+</head>
+<body class="bg-[#FBF9F5] text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TOP APP BAR -->
+<header class="sticky top-0 z-50 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm transition-colors duration-150 ease-in-out">
+<div class="flex justify-between items-center w-full px-space-lg max-w-7xl mx-auto h-16">
+<!-- Brand & Logo -->
+<div class="flex items-center gap-space-sm">
+<img alt="HealSync Brand Logo" class="w-9 h-9 object-contain rounded-md" src="https://lh3.googleusercontent.com/aida/AEtjO1WOlnJIPOZ7nOB7wqajzmJ8-SdF4uOXeBHet96E3-nMM6N_ThG3QQ-Y4xsqLGpHx-WclrANoQdSleiGhM_YEwCRaEftk_TctWVBHc0BAVR1Pjhpj-4fOUzTsFroUcQyh_jU34qy9lfinaXivdPkod8fPYy0bbfhJTus0gPn7Xc8GPaNsvZaC59kd8J0yeckCBmjJBNa5NsvtWTwYkYIc3wJb6Hx4xPQi5nmgw7FUhR6xNuDha0wgZ2bWMM"/>
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight" href="#">
+          HealSync
+        </a>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant dark:text-outline-variant font-medium text-label-md font-label-md hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-low dark:hover:bg-surface-variant px-2 py-1 rounded transition-colors duration-150 ease-in-out" href="#doctors">Doctors</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium text-label-md font-label-md hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-low dark:hover:bg-surface-variant px-2 py-1 rounded transition-colors duration-150 ease-in-out" href="#departments">Departments</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium text-label-md font-label-md hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-low dark:hover:bg-surface-variant px-2 py-1 rounded transition-colors duration-150 ease-in-out" href="#how-it-works">How It Works</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium text-label-md font-label-md hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-low dark:hover:bg-surface-variant px-2 py-1 rounded transition-colors duration-150 ease-in-out" href="#care-centers">Care Centers</a>
+</nav>
+<!-- Action Cluster -->
+<div class="flex items-center gap-space-sm">
+<button aria-label="Notifications" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<a class="text-label-md font-label-md font-semibold text-primary dark:text-inverse-primary hover:bg-surface-container-low px-3 py-2 rounded-lg transition-colors" href="#login">
+          Login
+        </a>
+<a class="inline-flex items-center justify-center bg-primary-container hover:bg-primary text-on-primary text-label-md font-label-md font-semibold px-4 py-2 rounded-lg shadow-sm hover:shadow transition-all duration-200" href="#book">
+          Book Appointment
+        </a>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="flex-grow">
+<!-- HERO SECTION -->
+<section class="relative pt-space-2xl pb-space-3xl px-space-lg max-w-7xl mx-auto overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- Left Column: Copy & Actions -->
+<div class="lg:col-span-6 flex flex-col items-start">
+<!-- Pill Tag -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E6E2D8] mb-space-md shadow-sm">
+<span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+<span class="text-caption font-caption text-primary tracking-wider uppercase font-semibold">Live System Protocol • Clinical Grid 2.4</span>
+</div>
+<!-- Hero Headline -->
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-primary tracking-tight mb-space-md">
+            Better appointments.<br/>
+<span class="text-secondary-container">Better care.</span>
+</h1>
+<!-- Supporting Text -->
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-space-xl max-w-xl leading-relaxed">
+            HealSync brings patients, doctors, and hospital teams into one calm, clear workflow from first booking to completed consultation.
+          </p>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full sm:w-auto mb-space-2xl">
+<a class="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-[#0F766E] text-on-primary px-space-lg h-11 rounded-lg text-label-md font-label-md shadow-md hover:shadow-lg transition-all group" href="#book">
+<span>Book an appointment</span>
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-0.5" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 bg-[#FFFFFF] text-primary border border-[#E6E2D8] hover:bg-[#F5F2EB] px-space-lg h-11 rounded-lg text-label-md font-label-md transition-colors" href="#find-doctor">
+<span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+<span>Find a doctor</span>
+</a>
+</div>
+<!-- Trust Indicators -->
+<div class="grid grid-cols-3 gap-4 pt-space-lg border-t border-[#E6E2D8] w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified_user">verified_user</span>
+<span class="text-label-sm font-label-sm text-on-surface">Secure by design</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="schedule">schedule</span>
+<span class="text-label-sm font-label-sm text-on-surface">Live availability</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="favorite">favorite</span>
+<span class="text-label-sm font-label-sm text-on-surface">Human-centered</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Showcase -->
+<div class="lg:col-span-6 relative">
+<!-- Visual Container -->
+<div class="relative rounded-2xl overflow-hidden border border-[#E6E2D8] bg-[#FFFFFF] shadow-ambient-card p-2">
+<img alt="Warm consultation between doctor and patient at HealSync care clinic" class="w-full h-[460px] object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU1jIfRlU6qh4j3Mnth2kVxgzetNgMMixZbj8rYT8rAdqcywQ2FtkATOcPowI5Kc5skwYcMNrb_FsMOVNx7g-1jjYEySK4jDzx8Ta9Z1wyTNtlNLGeFV6XSxF8OMz7uMHtINQeULiHL1hZfw7ZhD83l-_rg049hImBAeF-JTiZ6J1S7msbSOxw6H0QBIKREd4gzwkVZBF_RoYX4CPq-lXsJrT0bb0Cwb9KJ6k-_PbYbpBmJbmrbQjG"/>
+<!-- Floating Overlay: Today's Care Pulse Badge -->
+<div class="absolute top-6 left-6 bg-[#FFFFFF]/95 backdrop-blur-md border border-[#E6E2D8] px-4 py-2.5 rounded-xl shadow-floating-badge flex items-center gap-3">
+<div class="relative flex items-center justify-center">
+<span class="w-3 h-3 rounded-full bg-[#10B981]"></span>
+<span class="w-3 h-3 rounded-full bg-[#10B981] absolute animate-ping opacity-75"></span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption font-caption text-on-surface-variant uppercase tracking-wider">Today's Care</span>
+<span class="text-label-sm font-label-sm text-primary font-bold">14 Active Clinics • Live</span>
+</div>
+</div>
+<!-- Floating Overlay: Mini Booking Confirmation Snippet -->
+<div class="absolute bottom-6 right-6 bg-[#FFFFFF]/95 backdrop-blur-md border border-[#E6E2D8] p-4 rounded-xl shadow-floating-badge max-w-[270px] flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed text-caption font-caption">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                  Confirmed
+                </span>
+<span class="text-caption font-caption text-outline">10:30 AM</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Dr. Ananya Sharma</p>
+<p class="text-caption font-caption text-on-surface-variant">General Medicine • Consultation</p>
+</div>
+<div class="pt-2 border-t border-[#F1EFE9] flex items-center justify-between text-caption font-caption">
+<span class="text-outline">Patient Intake</span>
+<span class="text-primary font-semibold">Ready in Room 4B</span>
+</div>
+</div>
+</div>
+<!-- Ambient Decorative Glow -->
+<div class="absolute -bottom-6 -left-6 w-48 h-48 bg-primary-fixed/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+<div class="absolute -top-6 -right-6 w-48 h-48 bg-secondary-fixed/30 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+</div>
+</div>
+</section>
+<!-- IMPACT STATS STRIP -->
+<section class="border-y border-[#E6E2D8] bg-[#FFFFFF] py-space-xl">
+<div class="max-w-7xl mx-auto px-space-lg">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-lg text-center md:text-left">
+<div class="flex flex-col border-r last:border-0 border-[#F1EFE9] px-space-md">
+<span class="text-headline-lg font-headline-lg text-primary tracking-tight">340+</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1">Certified Specialists</span>
+</div>
+<div class="flex flex-col border-r last:border-0 border-[#F1EFE9] px-space-md">
+<span class="text-headline-lg font-headline-lg text-primary tracking-tight">18</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1">Integrated Departments</span>
+</div>
+<div class="flex flex-col border-r last:border-0 border-[#F1EFE9] px-space-md">
+<span class="text-headline-lg font-headline-lg text-secondary-container tracking-tight">99.8%</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1">On-Time Consultations</span>
+</div>
+<div class="flex flex-col px-space-md">
+<span class="text-headline-lg font-headline-lg text-primary tracking-tight">100%</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1">HIPAA &amp; Role-Protected</span>
+</div>
+</div>
+</div>
+</section>
+<!-- FEATURE SECTION: THE CARE JOURNEY -->
+<section class="py-space-3xl px-space-lg max-w-7xl mx-auto" id="how-it-works">
+<!-- Section Header -->
+<div class="max-w-2xl mb-space-2xl">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-secondary font-semibold">Architectural Care Coordination</span>
+<h2 class="text-display-lg-mobile md:text-headline-lg font-headline-lg text-primary mt-1 mb-space-sm tracking-tight">
+          Built around the care journey.
+        </h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">
+          Engineered to dissolve friction between administrative desks, clinicians, and families through clean, low-fatigue digital touchpoints.
+        </p>
+</div>
+<!-- Bento Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Card 1: Role-Based Access -->
+<div class="bg-[#FFFFFF] border border-[#E6E2D8] rounded-2xl p-space-xl shadow-ambient-card hover:border-primary/40 transition-all flex flex-col justify-between group">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary mb-space-lg group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[26px]" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-space-xs">
+              Secure Role-Based Access
+            </h3>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+              Tailored workspaces for Patients, Attending Physicians, and Hospital Administration. Verified identities ensure confidentiality without adding administrative drag.
+            </p>
+</div>
+<div class="mt-space-xl pt-space-md border-t border-[#F1EFE9] flex items-center justify-between text-caption font-caption text-outline">
+<span>Identity Governance</span>
+<span class="text-primary font-medium">Multi-Tier 2FA</span>
+</div>
+</div>
+<!-- Card 2: Slot Protection & Sync -->
+<div class="bg-[#FFFFFF] border border-[#E6E2D8] rounded-2xl p-space-xl shadow-ambient-card hover:border-primary/40 transition-all flex flex-col justify-between group">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary mb-space-lg group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[26px]" data-icon="sync_saved_locally">sync_saved_locally</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-space-xs">
+              Slot Protection &amp; Real-Time Sync
+            </h3>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+              Lock down calendar accuracy. Instant zero-conflict reservation engines prevent accidental double bookings with automated reminders and instant cancellations.
+            </p>
+</div>
+<div class="mt-space-xl pt-space-md border-t border-[#F1EFE9] flex items-center justify-between text-caption font-caption text-outline">
+<span>Concurrency Protection</span>
+<span class="text-secondary font-semibold">&lt; 15ms Latency</span>
+</div>
+</div>
+<!-- Card 3: Connected Workflows -->
+<div class="bg-[#FFFFFF] border border-[#E6E2D8] rounded-2xl p-space-xl shadow-ambient-card hover:border-primary/40 transition-all flex flex-col justify-between group">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary mb-space-lg group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[26px]" data-icon="hub">hub</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-space-xs">
+              Connected Care Workflows
+            </h3>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+              Keep diagnostic pathways aligned. Unified medical charts, instant lab requisitions, and post-appointment follow-up tracking live in an unfragmented ledger.
+            </p>
+</div>
+<div class="mt-space-xl pt-space-md border-t border-[#F1EFE9] flex items-center justify-between text-caption font-caption text-outline">
+<span>Clinical Continuity</span>
+<span class="text-primary font-medium">EHR • FHIR Ready</span>
+</div>
+</div>
+</div>
+</section>
+<!-- APPOINTMENT DISCOVERY PREVIEW SECTION -->
+<section class="py-space-2xl px-space-lg max-w-7xl mx-auto mb-space-3xl" id="doctors">
+<div class="bg-surface-container-low rounded-2xl p-space-xl border border-outline-variant">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
+<div>
+<span class="text-caption font-caption text-primary uppercase font-bold tracking-wider">Direct Access</span>
+<h2 class="text-headline-md font-headline-md text-primary mt-1">Specialists Available This Week</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Review clinician credentials and claim a live consultation window without telephone wait times.</p>
+</div>
+<a class="text-label-md font-label-md text-primary hover:text-secondary flex items-center gap-1 font-semibold transition-colors" href="#care-centers">
+            View all departments
+            <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<!-- Clinicians Mini Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Clinician 1 -->
+<div class="bg-[#FFFFFF] border border-[#E6E2D8] p-space-md rounded-xl flex items-center gap-space-md shadow-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-headline-sm flex-shrink-0">
+              AS
+            </div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="text-title-md font-title-md text-on-surface">Dr. Ananya Sharma</span>
+<span class="text-caption font-caption text-secondary font-bold">★ 4.9</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Primary Care • 12 yrs exp</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-caption font-caption px-2 py-0.5 rounded-full bg-[#E6E2D8]/50 text-primary">Next: Tomorrow 09:30</span>
+</div>
+</div>
+</div>
+<!-- Clinician 2 -->
+<div class="bg-[#FFFFFF] border border-[#E6E2D8] p-space-md rounded-xl flex items-center gap-space-md shadow-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-headline-sm flex-shrink-0">
+              MV
+            </div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="text-title-md font-title-md text-on-surface">Dr. Marcus Vance</span>
+<span class="text-caption font-caption text-secondary font-bold">★ 5.0</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Cardiology • 16 yrs exp</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-caption font-caption px-2 py-0.5 rounded-full bg-[#E6E2D8]/50 text-primary">Next: Today 15:00</span>
+</div>
+</div>
+</div>
+<!-- Clinician 3 -->
+<div class="bg-[#FFFFFF] border border-[#E6E2D8] p-space-md rounded-xl flex items-center gap-space-md shadow-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-headline-sm flex-shrink-0">
+              EL
+            </div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="text-title-md font-title-md text-on-surface">Dr. Elena Lin</span>
+<span class="text-caption font-caption text-secondary font-bold">★ 4.8</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Neurology • 9 yrs exp</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-caption font-caption px-2 py-0.5 rounded-full bg-[#E6E2D8]/50 text-primary">Next: Thursday 11:15</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CALL TO ACTION BANNER -->
+<section class="bg-primary-container text-on-primary py-space-2xl px-space-lg mb-space-3xl rounded-2xl max-w-7xl mx-auto shadow-ambient-card" id="book">
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="max-w-xl text-center md:text-left">
+<h2 class="text-headline-lg font-headline-lg tracking-tight mb-space-xs text-[#FFFFFF]">Ready to experience calm healthcare?</h2>
+<p class="text-body-md font-body-md text-on-primary-container">Book in under two minutes with no account required for immediate intake assessment.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="bg-secondary-container hover:bg-secondary text-on-secondary px-space-xl py-3 rounded-lg text-label-md font-label-md font-bold shadow-md hover:shadow-lg transition-all" href="#book-flow">
+            Schedule Appointment
+          </a>
+</div>
+</div>
+</section>
+</main>
+<!-- EMERGENCY PROTOCOL BANNER -->
+<div class="bg-[#FEF2F2] border-t border-b border-[#FCA5A5] py-2.5 px-space-lg text-center">
+<div class="max-w-7xl mx-auto flex items-center justify-center gap-2 text-[#991B1B] text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="emergency">emergency</span>
+<span><strong>Emergency Notice:</strong> If you are experiencing a life-threatening medical emergency, call 911 or visit the nearest emergency room immediately.</span>
+</div>
+</div>
+<!-- WEB FOOTER -->
+<footer class="bg-surface-container-low dark:bg-surface-dim border-t border-outline-variant dark:border-outline">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-lg py-space-xl max-w-7xl mx-auto gap-space-md">
+<!-- Brand & Copyright -->
+<div class="flex flex-col sm:flex-row items-center gap-space-sm text-center sm:text-left">
+<div class="flex items-center gap-2">
+<img alt="HealSync Brand Logo" class="w-6 h-6 object-contain rounded" src="https://lh3.googleusercontent.com/aida/AEtjO1WOlnJIPOZ7nOB7wqajzmJ8-SdF4uOXeBHet96E3-nMM6N_ThG3QQ-Y4xsqLGpHx-WclrANoQdSleiGhM_YEwCRaEftk_TctWVBHc0BAVR1Pjhpj-4fOUzTsFroUcQyh_jU34qy9lfinaXivdPkod8fPYy0bbfhJTus0gPn7Xc8GPaNsvZaC59kd8J0yeckCBmjJBNa5NsvtWTwYkYIc3wJb6Hx4xPQi5nmgw7FUhR6xNuDha0wgZ2bWMM"/>
+<span class="text-title-md font-title-md font-bold text-primary dark:text-inverse-primary">HealSync</span>
+</div>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+          © 2025 HealSync Healthcare Systems Inc. Restorative, Human-Centered Clinical Care.
+        </p>
+</div>
+<!-- Links & Protocols -->
+<div class="flex flex-wrap justify-center items-center gap-space-md">
+<a class="text-label-sm font-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary underline transition-colors duration-150" href="#privacy">Privacy Policy</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary underline transition-colors duration-150" href="#terms">Terms of Service</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary underline transition-colors duration-150" href="#hipaa">HIPAA Compliance</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary underline transition-colors duration-150" href="#emergency">Emergency Protocols</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary underline transition-colors duration-150" href="#support">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSync Portal - Clinical &amp; Ops Administration</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#003631",
+            "primary-fixed": "#b5ede5",
+            "secondary-container": "#fd651e",
+            "secondary-fixed": "#ffdbce",
+            "surface-container-high": "#dee8ff",
+            "on-error-container": "#93000a",
+            "on-background": "#111c2d",
+            "on-secondary-fixed": "#370e00",
+            "secondary": "#a73a00",
+            "surface-tint": "#316761",
+            "on-secondary-container": "#571a00",
+            "tertiary-fixed": "#9cf2e8",
+            "surface-dim": "#cfdaf2",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#004f49",
+            "on-tertiary-container": "#6dc2b9",
+            "outline": "#707977",
+            "primary-fixed-dim": "#9ad1c9",
+            "on-error": "#ffffff",
+            "inverse-surface": "#263143",
+            "secondary-fixed-dim": "#ffb599",
+            "on-surface": "#111c2d",
+            "surface-container-highest": "#d8e3fb",
+            "tertiary": "#003632",
+            "on-primary-container": "#87beb6",
+            "inverse-primary": "#9ad1c9",
+            "on-primary-fixed": "#00201d",
+            "primary-container": "#134e48",
+            "on-tertiary-fixed-variant": "#00504a",
+            "on-surface-variant": "#404947",
+            "background": "#f9f9ff",
+            "surface-container-low": "#f0f3ff",
+            "surface-variant": "#d8e3fb",
+            "inverse-on-surface": "#ecf1ff",
+            "surface-bright": "#f9f9ff",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bfc8c6",
+            "on-primary-fixed-variant": "#154f49",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed-dim": "#80d5cb",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#7f2b00",
+            "error-container": "#ffdad6",
+            "surface": "#f9f9ff",
+            "on-tertiary-fixed": "#00201d",
+            "surface-container": "#e7eeff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem",
+            "sidebar-width": "17.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "caption": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #FBF9F5;
+      color: #111c2d;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .card-border {
+      border: 1px solid #E6E2D8;
+    }
+    .glow-subtle {
+      box-shadow: 0 2px 8px -2px rgba(19, 78, 72, 0.04), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+    }
+    .glow-hover:hover {
+      box-shadow: 0 8px 24px -4px rgba(19, 78, 72, 0.08), 0 2px 6px -1px rgba(19, 78, 72, 0.03);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#FBF9F5] text-on-surface antialiased selection:bg-primary-fixed selection:text-primary">
+<div class="flex flex-1 min-h-screen">
+<!-- SideNavBar (Collapsible Dock / Sidebar Anchor from JSON) -->
+<aside class="fixed top-0 left-0 h-screen w-sidebar-width bg-surface-container-lowest border-r border-outline-variant z-40 hidden lg:flex flex-col justify-between p-space-md">
+<div>
+<!-- SideNav Brand / Profile Header -->
+<div class="flex items-center gap-space-sm pb-space-md border-b border-outline-variant mb-space-md">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container-low flex items-center justify-center p-1.5 flex-shrink-0 card-border">
+<img alt="HealSync Brand Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WOlnJIPOZ7nOB7wqajzmJ8-SdF4uOXeBHet96E3-nMM6N_ThG3QQ-Y4xsqLGpHx-WclrANoQdSleiGhM_YEwCRaEftk_TctWVBHc0BAVR1Pjhpj-4fOUzTsFroUcQyh_jU34qy9lfinaXivdPkod8fPYy0bbfhJTus0gPn7Xc8GPaNsvZaC59kd8J0yeckCBmjJBNa5NsvtWTwYkYIc3wJb6Hx4xPQi5nmgw7FUhR6xNuDha0wgZ2bWMM"/>
+</div>
+<div class="flex flex-col truncate">
+<span class="text-title-md font-title-md font-bold text-primary truncate">HealSync Portal</span>
+<span class="text-caption font-caption text-on-surface-variant font-medium tracking-wider uppercase">Clinical &amp; Ops</span>
+</div>
+</div>
+<!-- Primary Call to Action Button in Sidebar -->
+<div class="mb-space-lg">
+<button class="w-full flex items-center justify-center gap-space-xs px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>New Appointment</span>
+</button>
+</div>
+<!-- Navigation Tabs: Overview, Appointments, Patients & Doctors, Departments, Analytics -->
+<nav class="space-y-1">
+<p class="px-space-xs text-caption font-caption text-on-surface-variant uppercase tracking-wider mb-2 font-semibold">Hospital Command</p>
+<!-- Tab 1: Overview (ACTIVE) -->
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary font-semibold transition-all duration-200" href="#">
+<span class="material-symbols-outlined material-symbols-fill text-[20px]">dashboard</span>
+<span class="text-label-md font-label-md">Overview</span>
+</a>
+<!-- Tab 2: Appointments -->
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="text-label-md font-label-md">Appointments</span>
+<span class="ml-auto text-caption font-caption bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded font-bold">14</span>
+</a>
+<!-- Tab 3: Patients & Doctors -->
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+<span class="text-label-md font-label-md">Patients &amp; Doctors</span>
+</a>
+<!-- Tab 4: Departments -->
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">domain</span>
+<span class="text-label-md font-label-md">Departments</span>
+</a>
+<!-- Tab 5: Analytics -->
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="text-label-md font-label-md">Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Footer navigation tabs & System Info -->
+<div class="pt-space-md border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</a>
+<!-- Logged In Clinician / CMO Anchor Badge -->
+<div class="mt-4 p-2.5 rounded-xl bg-surface-container-low card-border flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-sm flex-shrink-0">
+            AS
+          </div>
+<div class="truncate leading-tight">
+<p class="text-label-sm font-label-sm text-on-surface font-semibold truncate">Dr. Arthur Sterling</p>
+<p class="text-caption font-caption text-on-surface-variant truncate">Chief Medical Officer</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Operational Canvas -->
+<div class="flex-1 flex flex-col lg:ml-sidebar-width min-w-0">
+<!-- Administrative Top Bar Header (Contextual Web Header matching TopNavBar Spec) -->
+<header class="sticky top-0 z-30 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant shadow-sm">
+<div class="flex items-center justify-between px-space-md lg:px-space-xl py-3.5 max-w-[1600px] mx-auto w-full">
+<!-- Mobile Menu & Hospital Switcher Unit -->
+<div class="flex items-center gap-3">
+<button class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2.5">
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100"></div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md font-bold text-primary">St. Jude Medical Center</span>
+<span class="text-caption font-caption px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline-variant/60 font-semibold hidden sm:inline-flex">Central Administration</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center" title="Switch Facility">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+<p class="text-caption font-caption text-on-surface-variant hidden md:block">
+                  All Systems Operational <span class="mx-1">•</span> <span class="text-primary font-medium">HIPAA Vault Synced</span> (0.42s latency)
+                </p>
+</div>
+</div>
+</div>
+<!-- Trailing Administrative Controls & Status Badges -->
+<div class="flex items-center gap-3">
+<!-- Search Quick Action (Administrative) -->
+<div class="relative hidden xl:block w-72">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 text-label-sm font-label-sm bg-[#FFFFFF] card-border rounded-lg placeholder-outline focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all outline-none" placeholder="Search patients, MRN, doctors..." type="text"/>
+</div>
+<!-- Audit Alerts Badge -->
+<button class="relative p-2 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="Audit &amp; Security Alerts">
+<span class="material-symbols-outlined text-[22px]">security</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<!-- Notifications Action (from JSON trailing_icon_actions) -->
+<button class="relative p-2 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+<!-- Hospital Quick Emergency / Action Button -->
+<button class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-sm text-label-sm card-border transition-colors font-semibold">
+<span class="material-symbols-outlined text-[18px]">local_hospital</span>
+<span>ICU Capacity: 94%</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Operational Body -->
+<main class="flex-1 p-space-md lg:p-space-xl max-w-[1600px] mx-auto w-full space-y-space-lg">
+<!-- Page Introduction Title Block -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight">Executive Clinical Dashboard</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-0.5">Real-time patient throughput, physician credential verifications, and cross-departmental operations.</p>
+</div>
+<div class="flex items-center gap-2.5">
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-lowest card-border text-on-surface-variant text-label-sm font-label-sm hover:bg-surface-container hover:text-primary transition-all glow-subtle">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Export CMS Audit</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Sync All EMR Feeds</span>
+</button>
+</div>
+</div>
+<!-- KPI Metric Cards Grid (Level 1 Porcelain Cards on Warm Canvas) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- KPI 1: Active Patients -->
+<div class="bg-surface-container-lowest p-5 rounded-xl card-border glow-subtle glow-hover transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Total Active Patients</span>
+<span class="p-2 rounded-lg bg-primary-fixed/30 text-primary">
+<span class="material-symbols-outlined text-[20px]">person_check</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold">14,820</span>
+<span class="text-label-sm font-label-sm font-bold text-emerald-700 flex items-center">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +8.4%
+              </span>
+</div>
+<p class="text-caption font-caption text-on-surface-variant mt-2">vs. previous 30 days period</p>
+</div>
+<!-- KPI 2: Credentialed Doctors -->
+<div class="bg-surface-container-lowest p-5 rounded-xl card-border glow-subtle glow-hover transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Credentialed Doctors</span>
+<span class="p-2 rounded-lg bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">stethoscope</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold">342</span>
+<span class="text-label-sm font-label-sm font-semibold text-secondary flex items-center bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
+                12 pending
+              </span>
+</div>
+<p class="text-caption font-caption text-on-surface-variant mt-2">Awaiting board accreditation check</p>
+</div>
+<!-- KPI 3: Active Departments -->
+<div class="bg-surface-container-lowest p-5 rounded-xl card-border glow-subtle glow-hover transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Active Departments</span>
+<span class="p-2 rounded-lg bg-primary-fixed/30 text-primary">
+<span class="material-symbols-outlined text-[20px]">apartment</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold">18</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Fully Integrated</span>
+</div>
+<p class="text-caption font-caption text-emerald-700 font-medium mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 100% Interoperability compliance
+            </p>
+</div>
+<!-- KPI 4: Monthly Appointments -->
+<div class="bg-surface-container-lowest p-5 rounded-xl card-border glow-subtle glow-hover transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Monthly Appointments</span>
+<span class="p-2 rounded-lg bg-secondary-fixed/40 text-secondary">
+<span class="material-symbols-outlined text-[20px]">event_available</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold">4,128</span>
+<span class="text-label-sm font-label-sm font-bold text-emerald-700">99.2% rate</span>
+</div>
+<p class="text-caption font-caption text-on-surface-variant mt-2">Fulfillment benchmark exceeded</p>
+</div>
+</section>
+<!-- Asymmetric Section: Interactive Appointment Activity & Real-time Audit Stream -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Interactive Appointment Activity Chart & Department Distribution (8 Cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-6 rounded-xl card-border glow-subtle flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Appointment Volume &amp; Slot Load</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Consultation distribution across specialty care wings</p>
+</div>
+<!-- Segmented Controls for Daily, Weekly, Monthly -->
+<div class="inline-flex p-1 bg-surface-container-low rounded-lg card-border self-start sm:self-auto">
+<button class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-primary rounded transition-colors">Daily</button>
+<button class="px-3 py-1 text-label-sm font-label-sm bg-surface-container-lowest text-primary font-bold shadow-xs rounded card-border">Weekly</button>
+<button class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-primary rounded transition-colors">Monthly</button>
+</div>
+</div>
+<!-- Top Metrics Bar for Utilization -->
+<div class="grid grid-cols-3 gap-4 p-4 rounded-xl bg-[#FBF9F5] card-border mb-6">
+<div>
+<span class="text-caption font-caption text-on-surface-variant uppercase font-semibold">Slot Utilization</span>
+<p class="text-headline-sm font-headline-sm font-bold text-primary mt-0.5">88.4%</p>
+<span class="text-caption font-caption text-emerald-700 font-medium">Optimal clinical band</span>
+</div>
+<div>
+<span class="text-caption font-caption text-on-surface-variant uppercase font-semibold">Peak Booking Window</span>
+<p class="text-headline-sm font-headline-sm font-bold text-primary mt-0.5">09:30 - 11:45</p>
+<span class="text-caption font-caption text-on-surface-variant">Morning acute shift</span>
+</div>
+<div>
+<span class="text-caption font-caption text-on-surface-variant uppercase font-semibold">Avg Consultation Time</span>
+<p class="text-headline-sm font-headline-sm font-bold text-primary mt-0.5">34.2 mins</p>
+<span class="text-caption font-caption text-on-surface-variant">Pediatrics highest (42m)</span>
+</div>
+</div>
+<!-- Bar & Progress Visual Distribution by Department -->
+<div class="space-y-4">
+<!-- Cardiology -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span> Cardiology (Dr. Vance Lead)
+                    </span>
+<span class="text-on-surface-variant font-medium">1,240 consultations <span class="text-primary font-semibold">(96% cap)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-500" style="width: 96%"></div>
+</div>
+</div>
+<!-- Neurology -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Neurology (Dr. Rostova Lead)
+                    </span>
+<span class="text-on-surface-variant font-medium">980 consultations <span class="text-primary font-semibold">(84% cap)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full transition-all duration-500" style="width: 84%"></div>
+</div>
+</div>
+<!-- Oncology -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> Oncology
+                    </span>
+<span class="text-on-surface-variant font-medium">745 consultations <span class="text-primary font-semibold">(91% cap)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 91%"></div>
+</div>
+</div>
+<!-- Orthopedics -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span> Orthopedics
+                    </span>
+<span class="text-on-surface-variant font-medium">620 consultations <span class="text-primary font-semibold">(76% cap)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+<div class="bg-teal-600 h-full rounded-full transition-all duration-500" style="width: 76%"></div>
+</div>
+</div>
+<!-- Pediatrics -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-600"></span> Pediatrics
+                    </span>
+<span class="text-on-surface-variant font-medium">543 consultations <span class="text-primary font-semibold">(72% cap)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+<div class="bg-amber-600 h-full rounded-full transition-all duration-500" style="width: 72%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/60 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Next automated schedule balancing run in: <span class="font-semibold text-primary">02h 15m</span></span>
+<a class="text-primary hover:underline font-semibold flex items-center gap-1" href="#">
+                Deep Wing Analytics <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Real-Time Audit Logs & Compliance Stream (4 Cols) -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-6 rounded-xl card-border glow-subtle flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">policy</span>
+<h3 class="text-headline-sm font-headline-sm text-primary">Audit &amp; Security</h3>
+</div>
+<span class="text-caption font-caption px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">LIVE STREAM</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Immutable HIPAA electronic record transaction log.</p>
+<!-- Stream Items -->
+<div class="space-y-3.5">
+<!-- Log item 1 -->
+<div class="p-3 rounded-lg bg-surface-container-low card-border text-body-sm font-body-sm">
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant mb-1">
+<span class="font-semibold text-primary">EMR ACCESS</span>
+<span>1 min ago</span>
+</div>
+<p class="text-on-surface text-label-sm font-label-sm font-medium">
+                    Patient record <strong class="text-primary">#HS-4019</strong> accessed by Dr. Marcus Vance.
+                  </p>
+<span class="text-caption font-caption text-outline">Action: Chart Note Verification</span>
+</div>
+<!-- Log item 2 -->
+<div class="p-3 rounded-lg bg-surface-container-low card-border text-body-sm font-body-sm">
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant mb-1">
+<span class="font-semibold text-secondary">SECURITY PROTOCOL</span>
+<span>14 mins ago</span>
+</div>
+<p class="text-on-surface text-label-sm font-label-sm font-medium">
+                    2-Factor authentication enforced for Cardiology desk terminals.
+                  </p>
+<span class="text-caption font-caption text-outline">Terminal ID: DESK-CARD-04</span>
+</div>
+<!-- Log item 3 -->
+<div class="p-3 rounded-lg bg-surface-container-low card-border text-body-sm font-body-sm">
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant mb-1">
+<span class="font-semibold text-primary">SLOT DISPATCH</span>
+<span>42 mins ago</span>
+</div>
+<p class="text-on-surface text-label-sm font-label-sm font-medium">
+                    New slot release batch published for Endocrinology outpatient block.
+                  </p>
+<span class="text-caption font-caption text-outline">Batch: #SLOT-2025-08-W4</span>
+</div>
+<!-- Log item 4 -->
+<div class="p-3 rounded-lg bg-surface-container-low card-border text-body-sm font-body-sm">
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant mb-1">
+<span class="font-semibold text-primary">CREDENTIAL CHECK</span>
+<span>1 hour ago</span>
+</div>
+<p class="text-on-surface text-label-sm font-label-sm font-medium">
+                    State License automated API verification confirmed for Dr. Vivienne Chen.
+                  </p>
+<span class="text-caption font-caption text-outline">Result: Clear / Standing Valid</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 text-center text-label-sm font-label-sm font-semibold text-primary hover:bg-surface-container-low rounded-lg transition-colors border border-outline-variant">
+              View Full HIPAA Audit Vault (24,910 events)
+            </button>
+</div>
+</section>
+<!-- Pending Doctor Approvals Queue (Operational Table) -->
+<section class="bg-surface-container-lowest rounded-xl card-border glow-subtle overflow-hidden">
+<div class="p-5 border-b border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed/40 text-secondary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[22px]">verified_user</span>
+</div>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Pending Doctor Approvals Queue</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Review clinician licensing, NPI records, and clinical department board submissions</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-caption font-caption px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">
+                3 Action Required
+              </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F5F2EB] text-caption font-caption text-on-surface-variant uppercase tracking-wider border-b border-outline-variant">
+<th class="py-3 px-5 font-bold">Doctor Details</th>
+<th class="py-3 px-5 font-bold">State License &amp; NPI</th>
+<th class="py-3 px-5 font-bold">Specialty &amp; Wing</th>
+<th class="py-3 px-5 font-bold">Affiliation</th>
+<th class="py-3 px-5 font-bold">Credentials File</th>
+<th class="py-3 px-5 font-bold">Submission</th>
+<th class="py-3 px-5 font-bold text-right">Operational Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#F1EFE9] text-body-sm font-body-sm">
+<!-- Row 1: Dr. Vivienne Chen -->
+<tr class="hover:bg-[#F5F2EB]/60 transition-colors">
+<td class="py-4 px-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold card-border">
+                        VC
+                      </div>
+<div>
+<div class="font-bold text-on-surface text-label-md font-label-md">Dr. Vivienne Chen</div>
+<div class="text-caption font-caption text-on-surface-variant">v.chen@pediatric.healsync.net</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-5">
+<span class="font-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">LIC-NY-88294</span>
+<div class="text-caption font-caption text-outline mt-0.5">NPI: 1049283921</div>
+</td>
+<td class="py-4 px-5">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-medium text-primary">
+<span class="material-symbols-outlined text-[16px]">cardiology</span> Pediatric Cardiology
+                    </span>
+</td>
+<td class="py-4 px-5 text-on-surface-variant">
+                    Mount Sinai Hospital NY
+                  </td>
+<td class="py-4 px-5">
+<a class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:underline font-medium" href="#">
+<span class="material-symbols-outlined text-[16px]">description</span> 4 Docs (PDF)
+                    </a>
+</td>
+<td class="py-4 px-5 text-on-surface-variant text-caption font-caption">
+                    Oct 24, 2025<br/>08:14 AM
+                  </td>
+<td class="py-4 px-5 text-right">
+<div class="inline-flex items-center gap-2 justify-end">
+<button class="px-3 py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary text-label-sm font-label-sm font-medium transition-colors shadow-xs">
+                        Approve Credentials
+                      </button>
+<button class="px-2.5 py-1.5 rounded-lg card-border bg-surface-container-lowest hover:bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm font-medium transition-colors">
+                        Request Clarification
+                      </button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Dr. Alistair Ross -->
+<tr class="hover:bg-[#F5F2EB]/60 transition-colors">
+<td class="py-4 px-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold card-border">
+                        AR
+                      </div>
+<div>
+<div class="font-bold text-on-surface text-label-md font-label-md">Dr. Alistair Ross</div>
+<div class="text-caption font-caption text-on-surface-variant">a.ross@surgical.healsync.net</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-5">
+<span class="font-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">LIC-MA-40291</span>
+<div class="text-caption font-caption text-outline mt-0.5">NPI: 1892837482</div>
+</td>
+<td class="py-4 px-5">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-medium text-primary">
+<span class="material-symbols-outlined text-[16px]">orthopedics</span> Orthopedic Surgery
+                    </span>
+</td>
+<td class="py-4 px-5 text-on-surface-variant">
+                    Mass General Brigham
+                  </td>
+<td class="py-4 px-5">
+<a class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:underline font-medium" href="#">
+<span class="material-symbols-outlined text-[16px]">description</span> 6 Docs (PDF)
+                    </a>
+</td>
+<td class="py-4 px-5 text-on-surface-variant text-caption font-caption">
+                    Oct 24, 2025<br/>09:42 AM
+                  </td>
+<td class="py-4 px-5 text-right">
+<div class="inline-flex items-center gap-2 justify-end">
+<button class="px-3 py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary text-label-sm font-label-sm font-medium transition-colors shadow-xs">
+                        Approve Credentials
+                      </button>
+<button class="px-2.5 py-1.5 rounded-lg card-border bg-surface-container-lowest hover:bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm font-medium transition-colors">
+                        Request Clarification
+                      </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Dr. Fatima Al-Mansoor -->
+<tr class="hover:bg-[#F5F2EB]/60 transition-colors">
+<td class="py-4 px-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold card-border">
+                        FA
+                      </div>
+<div>
+<div class="font-bold text-on-surface text-label-md font-label-md">Dr. Fatima Al-Mansoor</div>
+<div class="text-caption font-caption text-on-surface-variant">f.almansoor@endo.healsync.net</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-5">
+<span class="font-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">LIC-IL-77312</span>
+<div class="text-caption font-caption text-outline mt-0.5">NPI: 1475892011</div>
+</td>
+<td class="py-4 px-5">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-medium text-primary">
+<span class="material-symbols-outlined text-[16px]">vital_signs</span> Endocrinology
+                    </span>
+</td>
+<td class="py-4 px-5 text-on-surface-variant">
+                    Northwestern Memorial
+                  </td>
+<td class="py-4 px-5">
+<a class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary hover:underline font-medium" href="#">
+<span class="material-symbols-outlined text-[16px]">description</span> 3 Docs (PDF)
+                    </a>
+</td>
+<td class="py-4 px-5 text-on-surface-variant text-caption font-caption">
+                    Oct 24, 2025<br/>11:05 AM
+                  </td>
+<td class="py-4 px-5 text-right">
+<div class="inline-flex items-center gap-2 justify-end">
+<button class="px-3 py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary text-label-sm font-label-sm font-medium transition-colors shadow-xs">
+                        Approve Credentials
+                      </button>
+<button class="px-2.5 py-1.5 rounded-lg card-border bg-surface-container-lowest hover:bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm font-medium transition-colors">
+                        Request Clarification
+                      </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3.5 bg-[#FBF9F5] border-t border-outline-variant flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Showing 3 of 12 total doctor pending onboardings</span>
+<a class="text-primary font-semibold hover:underline flex items-center gap-1 text-label-sm font-label-sm" href="#">
+              Open Full Clinician Credentialing Ledger <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Hospital-Wide Appointments Data Table (Full Filtering & Administrative Operations) -->
+<section class="bg-surface-container-lowest rounded-xl card-border glow-subtle overflow-hidden">
+<!-- Filters Header -->
+<div class="p-5 border-b border-outline-variant space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Hospital-Wide Appointments</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Master roster of patient consults across all ambulatory wings</p>
+</div>
+<!-- Quick Action buttons -->
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low card-border hover:bg-surface-container text-primary text-label-sm font-label-sm font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Advanced Query</span>
+</button>
+</div>
+</div>
+<!-- Filter Controls Bar -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-3 pt-2">
+<!-- Search Input -->
+<div class="md:col-span-4 relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 text-label-sm font-label-sm bg-surface-container-lowest card-border rounded-lg placeholder-outline focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all outline-none" placeholder="Filter patient name or ID..." type="text"/>
+</div>
+<!-- Department Filter Dropdown -->
+<div class="md:col-span-3">
+<select class="w-full px-3 py-2 text-label-sm font-label-sm bg-surface-container-lowest card-border rounded-lg text-on-surface focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all outline-none">
+<option value="all">All Departments (18)</option>
+<option value="cardiology">Cardiology Wing</option>
+<option value="neurology">Neurology Wing</option>
+<option value="oncology">Oncology Wing</option>
+<option value="pediatrics">Pediatrics Wing</option>
+<option value="orthopedics">Orthopedics Wing</option>
+</select>
+</div>
+<!-- Status Pill Tabs (Segmented) -->
+<div class="md:col-span-5 flex items-center overflow-x-auto gap-1 bg-[#FBF9F5] p-1 rounded-lg card-border">
+<button class="px-2.5 py-1 text-caption font-caption rounded bg-surface-container-lowest text-primary font-bold shadow-xs card-border flex-1 text-center">All (4,128)</button>
+<button class="px-2.5 py-1 text-caption font-caption rounded text-on-surface-variant hover:text-primary flex-1 text-center font-medium">Requested</button>
+<button class="px-2.5 py-1 text-caption font-caption rounded text-on-surface-variant hover:text-primary flex-1 text-center font-medium">Accepted</button>
+<button class="px-2.5 py-1 text-caption font-caption rounded text-on-surface-variant hover:text-primary flex-1 text-center font-medium">Completed</button>
+<button class="px-2.5 py-1 text-caption font-caption rounded text-on-surface-variant hover:text-primary flex-1 text-center font-medium">Cancelled</button>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F5F2EB] text-caption font-caption text-on-surface-variant uppercase tracking-wider border-b border-outline-variant">
+<th class="py-3 px-5 font-bold">Appt ID &amp; Time</th>
+<th class="py-3 px-5 font-bold">Patient</th>
+<th class="py-3 px-5 font-bold">Attending Specialist</th>
+<th class="py-3 px-5 font-bold">Department</th>
+<th class="py-3 px-5 font-bold">Modality</th>
+<th class="py-3 px-5 font-bold">Status</th>
+<th class="py-3 px-5 font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#F1EFE9] text-body-sm font-body-sm">
+<!-- Appointment Row 1 -->
+<tr class="hover:bg-[#F5F2EB]/60 transition-colors">
+<td class="py-3.5 px-5">
+<span class="font-mono text-xs font-bold text-primary">#APT-9041</span>
+<div class="text-caption font-caption text-on-surface-variant">Today, 09:30 AM</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="font-semibold text-on-surface">Eleanor Vance</div>
+<div class="text-caption font-caption text-outline">MRN: #892-019 • Age 62</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="text-label-sm font-label-sm font-medium text-primary">Dr. Marcus Vance</div>
+<div class="text-caption font-caption text-on-surface-variant">Chief of Cardiology</div>
+</td>
+<td class="py-3.5 px-5">
+<span class="px-2 py-0.5 rounded-full text-caption font-caption bg-primary-fixed/30 text-primary font-semibold">Cardiology</span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1 text-caption font-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">domain</span> In-Person (Suite 4B)
+                    </span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-emerald-100 text-emerald-800 font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Accepted
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Appointment Row 2 -->
+<tr class="hover:bg-[#F5F2EB]/60 transition-colors">
+<td class="py-3.5 px-5">
+<span class="font-mono text-xs font-bold text-primary">#APT-9042</span>
+<div class="text-caption font-caption text-on-surface-variant">Today, 10:15 AM</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="font-semibold text-on-surface">Robert J. Thorne</div>
+<div class="text-caption font-caption text-outline">MRN: #412-984 • Age 49</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="text-label-sm font-label-sm font-medium text-primary">Dr. Elena Rostova</div>
+<div class="text-caption font-caption text-on-surface-variant">Lead Neurologist</div>
+</td>
+<td class="py-3.5 px-5">
+<span class="px-2 py-0.5 rounded-full text-caption font-caption bg-teal-100 text-teal-800 font-semibold">Neurology</span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1 text-caption font-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">videocam</span> Telehealth (Encrypted)
+                    </span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-emerald-100 text-emerald-800 font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Accepted
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Appointment Row 3 -->
+<tr class="hover:bg-[#F5F2EB]/60 transition-colors">
+<td class="py-3.5 px-5">
+<span class="font-mono text-xs font-bold text-primary">#APT-9043</span>
+<div class="text-caption font-caption text-on-surface-variant">Today, 11:00 AM</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="font-semibold text-on-surface">Clara Henderson</div>
+<div class="text-caption font-caption text-outline">MRN: #739-114 • Age 71</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="text-label-sm font-label-sm font-medium text-primary">Dr. Jonathan Hayes</div>
+<div class="text-caption font-caption text-on-surface-variant">Clinical Oncologist</div>
+</td>
+<td class="py-3.5 px-5">
+<span class="px-2 py-0.5 rounded-full text-caption font-caption bg-orange-100 text-orange-900 font-semibold">Oncology</span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1 text-caption font-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">domain</span> In-Person (Suite 2A)
+                    </span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-amber-100 text-amber-900 font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> In Progress
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Appointment Row 4 -->
+<tr class="hover:bg-[#F5F2EB]/60 transition-colors">
+<td class="py-3.5 px-5">
+<span class="font-mono text-xs font-bold text-primary">#APT-9044</span>
+<div class="text-caption font-caption text-on-surface-variant">Today, 11:30 AM</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="font-semibold text-on-surface">Noah Harrison (Parent: Sarah)</div>
+<div class="text-caption font-caption text-outline">MRN: #194-823 • Age 8</div>
+</td>
+<td class="py-3.5 px-5">
+<div class="text-label-sm font-label-sm font-medium text-primary">Dr. Maya Lin</div>
+<div class="text-caption font-caption text-on-surface-variant">Pediatrician</div>
+</td>
+<td class="py-3.5 px-5">
+<span class="px-2 py-0.5 rounded-full text-caption font-caption bg-amber-100 text-amber-900 font-semibold">Pediatrics</span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1 text-caption font-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">domain</span> In-Person (Pediatric Center)
+                    </span>
+</td>
+<td class="py-3.5 px-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-blue-100 text-blue-800 font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Requested
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Bar -->
+<div class="p-4 bg-[#FBF9F5] border-t border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-body-sm font-body-sm text-on-surface-variant">
+<div class="text-label-sm font-label-sm">
+              Showing <span class="font-bold text-on-surface">1 - 4</span> of <span class="font-bold text-on-surface">4,128</span> appointments
+            </div>
+<div class="flex items-center gap-1.5 self-end sm:self-auto">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest card-border text-on-surface-variant disabled:opacity-50 hover:bg-surface-container transition-colors" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-3 py-1 rounded bg-primary-container text-on-primary font-bold text-label-sm font-label-sm">1</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest card-border text-on-surface hover:bg-surface-container text-label-sm font-label-sm transition-colors">2</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest card-border text-on-surface hover:bg-surface-container text-label-sm font-label-sm transition-colors">3</button>
+<span class="px-1 text-outline">...</span>
+<button class="px-3 py-1 rounded bg-surface-container-lowest card-border text-on-surface hover:bg-surface-container text-label-sm font-label-sm transition-colors">104</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest card-border text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Web Footer Anchor (from Shared Components JSON) -->
+<footer class="docked full-width bottom-0 bg-surface-container-low border-t border-outline-variant transition-colors duration-150 mt-12">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-lg py-space-xl max-w-7xl mx-auto gap-space-md">
+<div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+<span class="text-title-md font-title-md font-bold text-primary">HealSync</span>
+<span class="text-caption font-caption text-on-surface-variant">
+              © 2025 HealSync Healthcare Systems Inc. Restorative, Human-Centered Clinical Care.
+            </span>
+</div>
+<div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-label-sm font-label-sm text-on-surface-variant">
+<a class="hover:text-primary underline transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary underline transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary underline transition-colors" href="#">HIPAA Compliance</a>
+<a class="hover:text-primary underline transition-colors" href="#">Emergency Protocols</a>
+<a class="hover:text-primary underline transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

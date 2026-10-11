@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctors Directory - HealSync Healthcare Systems</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#003631",
+            "primary-fixed": "#b5ede5",
+            "secondary-container": "#fd651e",
+            "secondary-fixed": "#ffdbce",
+            "surface-container-high": "#dee8ff",
+            "on-error-container": "#93000a",
+            "on-background": "#111c2d",
+            "on-secondary-fixed": "#370e00",
+            "secondary": "#a73a00",
+            "surface-tint": "#316761",
+            "on-secondary-container": "#571a00",
+            "tertiary-fixed": "#9cf2e8",
+            "surface-dim": "#cfdaf2",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#004f49",
+            "on-tertiary-container": "#6dc2b9",
+            "outline": "#707977",
+            "primary-fixed-dim": "#9ad1c9",
+            "on-error": "#ffffff",
+            "inverse-surface": "#263143",
+            "secondary-fixed-dim": "#ffb599",
+            "on-surface": "#111c2d",
+            "surface-container-highest": "#d8e3fb",
+            "tertiary": "#003632",
+            "on-primary-container": "#87beb6",
+            "inverse-primary": "#9ad1c9",
+            "on-primary-fixed": "#00201d",
+            "primary-container": "#134e48",
+            "on-tertiary-fixed-variant": "#00504a",
+            "on-surface-variant": "#404947",
+            "background": "#f9f9ff",
+            "surface-container-low": "#f0f3ff",
+            "surface-variant": "#d8e3fb",
+            "inverse-on-surface": "#ecf1ff",
+            "surface-bright": "#f9f9ff",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bfc8c6",
+            "on-primary-fixed-variant": "#154f49",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed-dim": "#80d5cb",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#7f2b00",
+            "error-container": "#ffdad6",
+            "surface": "#f9f9ff",
+            "on-tertiary-fixed": "#00201d",
+            "surface-container": "#e7eeff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem",
+            "sidebar-width": "17.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "caption": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-color: #FBF9F5;
+      color: #111C2D;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #BFC8C6;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#FBF9F5] text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-primary">
+<!-- EMERGENCY PROTOCOL CALLOUT STRIP -->
+<aside aria-label="Emergency Protocol" class="bg-secondary text-on-secondary px-space-lg py-space-xs text-center relative z-50">
+<div class="max-w-7xl mx-auto flex items-center justify-center gap-space-sm font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">medical_services</span>
+<span><strong>Urgent Medical Attention:</strong> If you are experiencing chest pain, acute shortness of breath, or a life-threatening crisis, dial <strong>911</strong> or visit our 24/7 Emergency Pavilion immediately.</span>
+</div>
+</aside>
+<!-- SHARED COMPONENT: TopNavBar (Web Header) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-space-lg max-w-7xl mx-auto h-16">
+<!-- Brand Logo & Tagline -->
+<div class="flex items-center gap-space-md">
+<a class="flex items-center gap-space-xs group focus:outline-none" href="#">
+<img alt="HealSync Brand Logo" class="w-9 h-9 object-contain rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-150" src="https://lh3.googleusercontent.com/aida/AEtjO1WOlnJIPOZ7nOB7wqajzmJ8-SdF4uOXeBHet96E3-nMM6N_ThG3QQ-Y4xsqLGpHx-WclrANoQdSleiGhM_YEwCRaEftk_TctWVBHc0BAVR1Pjhpj-4fOUzTsFroUcQyh_jU34qy9lfinaXivdPkod8fPYy0bbfhJTus0gPn7Xc8GPaNsvZaC59kd8J0yeckCBmjJBNa5NsvtWTwYkYIc3wJb6Hx4xPQi5nmgw7FUhR6xNuDha0wgZ2bWMM"/>
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-tight">HealSync</span>
+</a>
+<div class="hidden lg:flex items-center gap-2 text-outline text-caption pl-3 border-l border-outline-variant">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>Care Network Online</span>
+</div>
+</div>
+<!-- Navigation Links (Exact Match: Doctors is Active Tab) -->
+<nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-space-lg">
+<a class="text-primary font-semibold border-b-2 border-primary pb-1 transition-colors duration-150 ease-in-out font-label-md text-label-md flex items-center gap-1" href="#">
+          Doctors
+          <span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>
+</a>
+<a class="text-on-surface-variant font-medium hover:text-primary hover:bg-surface-container-low px-2 py-1 rounded-lg transition-colors duration-150 ease-in-out font-label-md text-label-md" href="#">
+          Departments
+        </a>
+<a class="text-on-surface-variant font-medium hover:text-primary hover:bg-surface-container-low px-2 py-1 rounded-lg transition-colors duration-150 ease-in-out font-label-md text-label-md" href="#">
+          How It Works
+        </a>
+<a class="text-on-surface-variant font-medium hover:text-primary hover:bg-surface-container-low px-2 py-1 rounded-lg transition-colors duration-150 ease-in-out font-label-md text-label-md" href="#">
+          Care Centers
+        </a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-space-md">
+<button aria-label="Notifications" class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-150 relative" type="button">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<a class="text-primary font-label-md text-label-md font-semibold hover:text-opacity-80 px-3 py-2 transition-colors" href="#">
+          Login
+        </a>
+<a class="hidden sm:inline-flex items-center gap-1.5 bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-semibold px-space-lg py-2.5 rounded-lg transition-all duration-150 shadow-sm hover:shadow" href="#">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+          Book Appointment
+        </a>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-space-lg py-space-xl">
+<!-- Hero Title & Context Section -->
+<div class="mb-space-lg flex flex-col md:flex-row md:items-end justify-between gap-space-md border-b border-outline-variant pb-space-lg">
+<div>
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-primary-fixed text-primary font-caption text-caption uppercase tracking-wider mb-2">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+          Verified Healthcare Specialists
+        </div>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-primary tracking-tight">
+          Find Compassionate Clinical Care
+        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-1 max-w-2xl">
+          Browse verified physicians, discover sub-specialty clinics, and secure verified real-time appointments across the HealSync integrated health system.
+        </p>
+</div>
+<!-- Quick Metrics Counter Pill -->
+<div class="flex items-center gap-3 bg-surface-container-lowest border border-outline-variant px-space-md py-space-sm rounded-xl shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">stethoscope</span>
+</div>
+<div>
+<span class="block text-headline-sm font-headline-sm text-primary leading-none">48</span>
+<span class="text-caption font-caption text-outline">Board-Certified Doctors</span>
+</div>
+</div>
+</div>
+<!-- SEARCH & MULTI-FILTER SECTION -->
+<section aria-label="Search and Filter Specialists" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-space-md md:p-space-lg shadow-sm mb-space-xl">
+<!-- Primary Search Input & Main Department Selector -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm items-center pb-space-md border-b border-outline-variant">
+<!-- Large Search Bar -->
+<div class="lg:col-span-6 relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-11 pl-11 pr-4 bg-[#FFFFFF] border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" placeholder="Search by doctor name, condition, procedure, or hospital..." type="text" value=""/>
+</div>
+<!-- Department Dropdown -->
+<div class="lg:col-span-4 relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline">domain</span>
+<select class="w-full h-11 pl-11 pr-8 bg-[#FFFFFF] border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface appearance-none focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all cursor-pointer">
+<option selected="">All Departments (Cardiology, Neurology, Pediatrics, Orthopedics, Oncology)</option>
+<option>Cardiovascular Medicine &amp; Surgery</option>
+<option>Neurology &amp; Cognitive Sciences</option>
+<option>Pediatrics &amp; Adolescent Care</option>
+<option>Orthopedic Surgery &amp; Sports Rehabilitation</option>
+<option>Comprehensive Medical Oncology</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<!-- Filter Reset / Apply Actions -->
+<div class="lg:col-span-2 flex items-center gap-2">
+<button class="w-full h-11 bg-primary-container hover:bg-primary text-on-primary rounded-lg font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+            Apply Filter
+          </button>
+</div>
+</div>
+<!-- Secondary Filters & Operational Chips -->
+<div class="pt-space-md flex flex-wrap items-center justify-between gap-space-sm">
+<!-- Left: Chips Cluster -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="text-caption font-caption text-outline uppercase tracking-wider mr-1">Quick Filters:</span>
+<!-- Availability Toggle -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary-container bg-primary-fixed text-primary font-label-sm text-label-sm font-semibold transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+            Available Today / Tomorrow
+            <span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+<!-- Format: In-Clinic -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant bg-[#FFFFFF] hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+            In-Clinic Visit
+          </button>
+<!-- Format: Telehealth -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant bg-[#FFFFFF] hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+            Telehealth Available
+          </button>
+<!-- Rating Filter -->
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-outline-variant bg-[#FFFFFF] hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium transition-all" type="button">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.5+ Rating</span>
+</button>
+<!-- Language Selector -->
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-outline-variant bg-[#FFFFFF] hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+<span>Language: English, Spanish</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<!-- Clear Filters link -->
+<button class="text-caption font-caption text-secondary hover:underline ml-2" type="button">
+            Reset All
+          </button>
+</div>
+<!-- Right: Active Status Note -->
+<div class="text-label-sm font-label-sm text-outline flex items-center gap-1.5 ml-auto">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+<span>Showing <strong>48 Board-Certified Specialists</strong></span>
+</div>
+</div>
+</section>
+<!-- DOCTOR CARDS: 3-COLUMN RESPONSIVE GRID -->
+<section aria-label="Physician Profiles Grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg mb-space-xl">
+<!-- CARD 1: Dr. Marcus Vance, MD -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-space-lg flex flex-col justify-between hover:shadow-md transition-shadow duration-200 group relative">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-caption font-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Accepting New Patients
+          </span>
+</div>
+<div>
+<!-- Doctor Header: Avatar + Title -->
+<div class="flex items-start gap-space-md mb-space-md">
+<div class="relative flex-shrink-0">
+<img alt="Dr. Marcus Vance, MD" class="w-20 h-20 rounded-xl object-cover object-top border border-outline-variant shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCdNQFuz7ogdQ-OpLSMEH7h-dHxfLIg1ppwyWA0Aoi8CnLX7shSMzcrYnTCq2C19NkfZplujYXmGwstToBWUY_uAeD4hre8VzHky8d5Y-ZPVUrnVQ6cI3EJJtXkir7CFPGJtQLKla5KjcUWDk4sc7W8bBvEDTTW9hinPHHILG7_FrNMHwOi7J2-v0WdEIlYxnnrtvpfcVi3wmzOaOmn9SQ22Uy8jBujxuYaxiI9gr2a_l3WFxfryNk"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary p-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] block">verified</span>
+</div>
+</div>
+<div class="pr-12">
+<h2 class="text-title-md font-title-md text-primary font-bold tracking-tight">
+                Dr. Marcus Vance, MD
+              </h2>
+<p class="text-body-sm font-body-sm font-semibold text-secondary">
+                Chief of Cardiology
+              </p>
+<p class="text-caption font-caption text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">local_hospital</span>
+                St. Jude Heart Center
+              </p>
+</div>
+</div>
+<!-- Credentials & Performance Metrics -->
+<div class="grid grid-cols-3 gap-2 py-2 border-y border-outline-variant/60 bg-surface-container-low/40 rounded-lg px-2.5 mb-space-md">
+<div>
+<span class="block text-caption font-caption text-outline">Rating</span>
+<div class="flex items-center gap-1 text-label-sm font-label-sm font-bold text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                5.0 <span class="text-outline font-normal text-[11px]">(184)</span>
+</div>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Experience</span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">16 Years</span>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Consult Fee</span>
+<span class="text-label-sm font-label-sm font-bold text-primary">$160</span>
+</div>
+</div>
+<!-- Clinical Specializations & Format Chips -->
+<div class="space-y-2 mb-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Echocardiography</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Hypertension</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Coronary Stents</span>
+</div>
+<p class="text-caption font-caption text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">health_and_safety</span>
+              Most major insurance networks accepted (Aetna, BCBS, Medicare)
+            </p>
+</div>
+</div>
+<!-- Card Footer: Availability Slot & Action Buttons -->
+<div class="pt-space-sm border-t border-outline-variant">
+<div class="flex items-center justify-between mb-3 bg-primary-fixed/40 px-3 py-1.5 rounded-lg border border-primary-fixed">
+<span class="text-caption font-caption text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+              Next Opening:
+            </span>
+<span class="text-label-sm font-label-sm font-bold text-primary">Today at 3:00 PM</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<a class="h-10 px-3 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" href="#">
+              View Profile
+            </a>
+<a class="h-10 px-3 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              Quick Book
+            </a>
+</div>
+</div>
+</article>
+<!-- CARD 2: Dr. Elena Rostova, MD -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-space-lg flex flex-col justify-between hover:shadow-md transition-shadow duration-200 group relative">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-caption font-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Accepting New Patients
+          </span>
+</div>
+<div>
+<!-- Doctor Header: Avatar + Title -->
+<div class="flex items-start gap-space-md mb-space-md">
+<div class="relative flex-shrink-0">
+<img alt="Dr. Elena Rostova, MD" class="w-20 h-20 rounded-xl object-cover object-top border border-outline-variant shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv2txUJmwrg-KnjYui1EEbUX-NshNYkHSxRNWC-vCckA4UDQm3-g7jENBrxPPsFfisnNYuGQPirgpREGRTYSh5mkyuc7sStOJgD_NLe-Mt4Flp_dEI-DdX5tV3dyAcX9-YJjuPqaRbhrVJwYlHS9O5ZuacZryUTgD5juUPxARtw4bHmBtch0rrpE6_79x4kQmS9j_cZNzBDhWxBH32GwMR4-xL0gdMzFDW-K5gffVY3PqfinVfkOVi"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary p-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] block">verified</span>
+</div>
+</div>
+<div class="pr-12">
+<h2 class="text-title-md font-title-md text-primary font-bold tracking-tight">
+                Dr. Elena Rostova, MD
+              </h2>
+<p class="text-body-sm font-body-sm font-semibold text-secondary">
+                Senior Neurologist
+              </p>
+<p class="text-caption font-caption text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">local_hospital</span>
+                Neuroscience Pavilion
+              </p>
+</div>
+</div>
+<!-- Credentials & Performance Metrics -->
+<div class="grid grid-cols-3 gap-2 py-2 border-y border-outline-variant/60 bg-surface-container-low/40 rounded-lg px-2.5 mb-space-md">
+<div>
+<span class="block text-caption font-caption text-outline">Rating</span>
+<div class="flex items-center gap-1 text-label-sm font-label-sm font-bold text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                4.9 <span class="text-outline font-normal text-[11px]">(142)</span>
+</div>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Experience</span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">12 Years</span>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Consult Fee</span>
+<span class="text-label-sm font-label-sm font-bold text-primary">$180</span>
+</div>
+</div>
+<!-- Clinical Specializations & Format Chips -->
+<div class="space-y-2 mb-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Headache Medicine</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Epilepsy</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Concussion</span>
+</div>
+<p class="text-caption font-caption text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">health_and_safety</span>
+              United Healthcare, Cigna, Anthem, Medicare in-network
+            </p>
+</div>
+</div>
+<!-- Card Footer: Availability Slot & Action Buttons -->
+<div class="pt-space-sm border-t border-outline-variant">
+<div class="flex items-center justify-between mb-3 bg-primary-fixed/40 px-3 py-1.5 rounded-lg border border-primary-fixed">
+<span class="text-caption font-caption text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+              Next Opening:
+            </span>
+<span class="text-label-sm font-label-sm font-bold text-primary">Tomorrow at 11:15 AM</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<a class="h-10 px-3 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" href="#">
+              View Profile
+            </a>
+<a class="h-10 px-3 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              Quick Book
+            </a>
+</div>
+</div>
+</article>
+<!-- CARD 3: Dr. Ananya Sharma, MD -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-space-lg flex flex-col justify-between hover:shadow-md transition-shadow duration-200 group relative">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-caption font-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Telehealth Ready
+          </span>
+</div>
+<div>
+<!-- Doctor Header: Avatar + Title -->
+<div class="flex items-start gap-space-md mb-space-md">
+<div class="relative flex-shrink-0">
+<img class="w-20 h-20 rounded-xl object-cover border border-outline-variant shadow-sm" data-alt="A portrait of Dr. Ananya Sharma, a compassionate South Asian female physician in clinical scrubs and white coat, smiling in an organic warm-toned medical consultation room with leafy plants and ambient natural sunlight. The aesthetic utilizes deep teal accents, warm ivory surfaces, and clean architectural lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqhNqOXoP4JzCD_2mSHJR-gYqsGOdn450h1oiAuHjbDQIyXWpcHkclCSg0BOa2zskaKqFImh7P-FwaQVmjJ348YkszlTRMZvih8Di2S_E5yJmdoBiyJhxsrXEOvqYtnwFBjGZecie3o95uz7CmEPaosp746Zs4nV2ORbLeiKKzEW8rpOVbeV4yYqbAO_blrDp1fo0maB0-4SXm8oGZUTcM2I0nz5ODwmoGOBGCrL-rWBlm85eypCHJ"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary p-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] block">verified</span>
+</div>
+</div>
+<div class="pr-12">
+<h2 class="text-title-md font-title-md text-primary font-bold tracking-tight">
+                Dr. Ananya Sharma, MD
+              </h2>
+<p class="text-body-sm font-body-sm font-semibold text-secondary">
+                Internal Medicine &amp; Preventative Health
+              </p>
+<p class="text-caption font-caption text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">local_hospital</span>
+                Primary Care Suite 200
+              </p>
+</div>
+</div>
+<!-- Credentials & Performance Metrics -->
+<div class="grid grid-cols-3 gap-2 py-2 border-y border-outline-variant/60 bg-surface-container-low/40 rounded-lg px-2.5 mb-space-md">
+<div>
+<span class="block text-caption font-caption text-outline">Rating</span>
+<div class="flex items-center gap-1 text-label-sm font-label-sm font-bold text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                4.95 <span class="text-outline font-normal text-[11px]">(210)</span>
+</div>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Experience</span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">9 Years</span>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Consult Fee</span>
+<span class="text-label-sm font-label-sm font-bold text-primary">$140</span>
+</div>
+</div>
+<!-- Clinical Specializations & Format Chips -->
+<div class="space-y-2 mb-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Metabolic Health</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Lifestyle Care</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Immunity</span>
+</div>
+<p class="text-caption font-caption text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">health_and_safety</span>
+              Direct billing support with 24 insurance providers
+            </p>
+</div>
+</div>
+<!-- Card Footer: Availability Slot & Action Buttons -->
+<div class="pt-space-sm border-t border-outline-variant">
+<div class="flex items-center justify-between mb-3 bg-primary-fixed/40 px-3 py-1.5 rounded-lg border border-primary-fixed">
+<span class="text-caption font-caption text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+              Next Opening:
+            </span>
+<span class="text-label-sm font-label-sm font-bold text-primary">Today at 4:30 PM</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<a class="h-10 px-3 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" href="#">
+              View Profile
+            </a>
+<a class="h-10 px-3 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              Quick Book
+            </a>
+</div>
+</div>
+</article>
+<!-- CARD 4: Dr. Julian K. Mercer, MD, PhD -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-space-lg flex flex-col justify-between hover:shadow-md transition-shadow duration-200 group relative">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline-variant text-caption font-caption">
+<span class="material-symbols-outlined text-[13px]">military_tech</span>
+            Distinguished Fellow
+          </span>
+</div>
+<div>
+<!-- Doctor Header: Avatar + Title -->
+<div class="flex items-start gap-space-md mb-space-md">
+<div class="relative flex-shrink-0">
+<img class="w-20 h-20 rounded-xl object-cover border border-outline-variant shadow-sm" data-alt="Professional photographic headshot of Dr. Julian Mercer, a distinguished male orthopedic surgeon in his early fifties with salt and pepper hair, looking warmly at the camera. Clean architectural hospital interior in the background with soft ambient warm lighting, deep forest teal tones, and crisp white lab coat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWTnLccYG5B5GL4X8tue8VCiRnhm7aMsG28-2sjMkntzykfo__V-T90mQbuUOael3oDcbtFsiipzXAf9hmoDS84rKFWF8bGSSIL5YNxpts3qjmgRv1989MZgQkQ30Y4NZl6lT-8zCtZy-PiTV33iVw_IHCiDjLxzVjqINxduudmYX7dq34rKxFoSlDA947G-IsGYqLBDdrFfnkIS7C0xIOw0hyQviAQfAEE1PQph0vUl5PH2xWgep-"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary p-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] block">verified</span>
+</div>
+</div>
+<div class="pr-12">
+<h2 class="text-title-md font-title-md text-primary font-bold tracking-tight">
+                Dr. Julian K. Mercer, MD, PhD
+              </h2>
+<p class="text-body-sm font-body-sm font-semibold text-secondary">
+                Orthopedic &amp; Spine Surgery
+              </p>
+<p class="text-caption font-caption text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">local_hospital</span>
+                Center for Joint Restoration
+              </p>
+</div>
+</div>
+<!-- Credentials & Performance Metrics -->
+<div class="grid grid-cols-3 gap-2 py-2 border-y border-outline-variant/60 bg-surface-container-low/40 rounded-lg px-2.5 mb-space-md">
+<div>
+<span class="block text-caption font-caption text-outline">Rating</span>
+<div class="flex items-center gap-1 text-label-sm font-label-sm font-bold text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                4.85 <span class="text-outline font-normal text-[11px]">(98)</span>
+</div>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Experience</span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">18 Years</span>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Consult Fee</span>
+<span class="text-label-sm font-label-sm font-bold text-primary">$210</span>
+</div>
+</div>
+<!-- Clinical Specializations & Format Chips -->
+<div class="space-y-2 mb-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Minimally Invasive Spine</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Arthroplasty</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Sports Rehab</span>
+</div>
+<p class="text-caption font-caption text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">health_and_safety</span>
+              All major commercial HMO/PPO policies approved
+            </p>
+</div>
+</div>
+<!-- Card Footer: Availability Slot & Action Buttons -->
+<div class="pt-space-sm border-t border-outline-variant">
+<div class="flex items-center justify-between mb-3 bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant/60">
+<span class="text-caption font-caption text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+              Next Opening:
+            </span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Friday, 10:00 AM</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<a class="h-10 px-3 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" href="#">
+              View Profile
+            </a>
+<a class="h-10 px-3 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              Quick Book
+            </a>
+</div>
+</div>
+</article>
+<!-- CARD 5: Dr. Claire Moreau, MD -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-space-lg flex flex-col justify-between hover:shadow-md transition-shadow duration-200 group relative">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-caption font-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Pediatric Certified
+          </span>
+</div>
+<div>
+<!-- Doctor Header: Avatar + Title -->
+<div class="flex items-start gap-space-md mb-space-md">
+<div class="relative flex-shrink-0">
+<img class="w-20 h-20 rounded-xl object-cover border border-outline-variant shadow-sm" data-alt="A warm, professional portrait of Dr. Claire Moreau, a female pediatric neurologist with gentle demeanor, holding a diagnostic tablet. Set within a bright, modern pediatric clinical consultation room featuring gentle warm timber furnishings and deep teal aesthetic detailing. High key natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1VbXLRb8IAVLscuLsUpQiOnb3oWQdswRzAcz5jvsZxYnz6cNbnFAX3YNccCoeuws6pxcdkwDpg3wwoNA-g42QzDPUby9AwuF3N_BoyRoR13Mwsu1TqeQPZDUiOL-SMHajTcaMMqaqtxahxGCBEioAcePG_rOH4kLQLeNX6JLCgNpyoZ28TSNtRnVsymn2ht6PGjwwU1KyS_pMFZHlPNXApqgtCv6p1hBLln9hbENUQpGL4clQ0sKE"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary p-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] block">verified</span>
+</div>
+</div>
+<div class="pr-12">
+<h2 class="text-title-md font-title-md text-primary font-bold tracking-tight">
+                Dr. Claire Moreau, MD
+              </h2>
+<p class="text-body-sm font-body-sm font-semibold text-secondary">
+                Pediatric Neurology &amp; Development
+              </p>
+<p class="text-caption font-caption text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">local_hospital</span>
+                Children's Specialty Wing
+              </p>
+</div>
+</div>
+<!-- Credentials & Performance Metrics -->
+<div class="grid grid-cols-3 gap-2 py-2 border-y border-outline-variant/60 bg-surface-container-low/40 rounded-lg px-2.5 mb-space-md">
+<div>
+<span class="block text-caption font-caption text-outline">Rating</span>
+<div class="flex items-center gap-1 text-label-sm font-label-sm font-bold text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                5.0 <span class="text-outline font-normal text-[11px]">(156)</span>
+</div>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Experience</span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">14 Years</span>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Consult Fee</span>
+<span class="text-label-sm font-label-sm font-bold text-primary">$175</span>
+</div>
+</div>
+<!-- Clinical Specializations & Format Chips -->
+<div class="space-y-2 mb-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Developmental Milestones</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Pediatric Migraine</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">EEG Analysis</span>
+</div>
+<p class="text-caption font-caption text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">health_and_safety</span>
+              Medicaid, CHIP, and regional private insurance accepted
+            </p>
+</div>
+</div>
+<!-- Card Footer: Availability Slot & Action Buttons -->
+<div class="pt-space-sm border-t border-outline-variant">
+<div class="flex items-center justify-between mb-3 bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant/60">
+<span class="text-caption font-caption text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+              Next Opening:
+            </span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Thursday, 01:30 PM</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<a class="h-10 px-3 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" href="#">
+              View Profile
+            </a>
+<a class="h-10 px-3 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              Quick Book
+            </a>
+</div>
+</div>
+</article>
+<!-- CARD 6: Dr. Tariq Mansour, MD -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-space-lg flex flex-col justify-between hover:shadow-md transition-shadow duration-200 group relative">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-caption font-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Accepting New Patients
+          </span>
+</div>
+<div>
+<!-- Doctor Header: Avatar + Title -->
+<div class="flex items-start gap-space-md mb-space-md">
+<div class="relative flex-shrink-0">
+<img class="w-20 h-20 rounded-xl object-cover border border-outline-variant shadow-sm" data-alt="Editorial portrait of Dr. Tariq Mansour, a mid-thirties Middle Eastern interventional cardiologist in deep navy surgical scrubs wearing a stethoscope. Warm ivory backdrop with sophisticated deep teal architectural glass reflection and soft natural diffused hospital lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj4ZZUKu-X2m_e_NyEfgvxjhDzoOR4By3sL2-rpnto_q7xXXd5MJJU1uLMfbOaYsmtkU1vHkBP5e0Af6cswqff1ZvbxRt5-uTUpe3PMi2LpSQfVJv6F0wrI8UzEdXKRKdfcZ9IdlNEsENSQ7U1ETdkQ7SxgC0vsIjgbmWh9t1W6NCpswO4jyi2ajr8Hwzj9tIicCS40g4e6My0kkh1znat-l162DLGQ2ZDSJJBBbWMx0vXDoiktpZw"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary p-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] block">verified</span>
+</div>
+</div>
+<div class="pr-12">
+<h2 class="text-title-md font-title-md text-primary font-bold tracking-tight">
+                Dr. Tariq Mansour, MD
+              </h2>
+<p class="text-body-sm font-body-sm font-semibold text-secondary">
+                Interventional Cardiology
+              </p>
+<p class="text-caption font-caption text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">local_hospital</span>
+                Cardiovascular Institute
+              </p>
+</div>
+</div>
+<!-- Credentials & Performance Metrics -->
+<div class="grid grid-cols-3 gap-2 py-2 border-y border-outline-variant/60 bg-surface-container-low/40 rounded-lg px-2.5 mb-space-md">
+<div>
+<span class="block text-caption font-caption text-outline">Rating</span>
+<div class="flex items-center gap-1 text-label-sm font-label-sm font-bold text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                4.9 <span class="text-outline font-normal text-[11px]">(88)</span>
+</div>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Experience</span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface">11 Years</span>
+</div>
+<div class="border-l border-outline-variant/50 pl-2">
+<span class="block text-caption font-caption text-outline">Consult Fee</span>
+<span class="text-label-sm font-label-sm font-bold text-primary">$190</span>
+</div>
+</div>
+<!-- Clinical Specializations & Format Chips -->
+<div class="space-y-2 mb-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Angioplasty</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Valvular Heart Disease</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption">Cardiac MRI</span>
+</div>
+<p class="text-caption font-caption text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">health_and_safety</span>
+              Direct electronic referral and rapid lab sync supported
+            </p>
+</div>
+</div>
+<!-- Card Footer: Availability Slot & Action Buttons -->
+<div class="pt-space-sm border-t border-outline-variant">
+<div class="flex items-center justify-between mb-3 bg-primary-fixed/40 px-3 py-1.5 rounded-lg border border-primary-fixed">
+<span class="text-caption font-caption text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+              Next Opening:
+            </span>
+<span class="text-label-sm font-label-sm font-bold text-primary">Tomorrow, 09:00 AM</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<a class="h-10 px-3 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" href="#">
+              View Profile
+            </a>
+<a class="h-10 px-3 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              Quick Book
+            </a>
+</div>
+</div>
+</article>
+</section>
+<!-- PAGINATION BAR -->
+<nav aria-label="Directory Pagination" class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm shadow-sm">
+<div class="text-body-sm font-body-sm text-outline">
+        Showing <span class="font-semibold text-on-surface">1 - 6</span> of <span class="font-semibold text-on-surface">48</span> Specialists
+      </div>
+<div class="flex items-center gap-1.5">
+<!-- Prev Button -->
+<button class="h-9 px-3 rounded-lg border border-outline-variant/60 text-outline cursor-not-allowed font-label-sm text-label-sm flex items-center gap-1 bg-[#FFFFFF]" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+          Previous
+        </button>
+<!-- Page Numbers -->
+<button class="w-9 h-9 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-bold flex items-center justify-center shadow-sm" type="button">
+          1
+        </button>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container text-on-surface font-label-sm text-label-sm font-medium flex items-center justify-center transition-colors" type="button">
+          2
+        </button>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container text-on-surface font-label-sm text-label-sm font-medium flex items-center justify-center transition-colors" type="button">
+          3
+        </button>
+<span class="px-1 text-outline">...</span>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container text-on-surface font-label-sm text-label-sm font-medium flex items-center justify-center transition-colors" type="button">
+          8
+        </button>
+<!-- Next Button -->
+<button class="h-9 px-3 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors bg-[#FFFFFF]" type="button">
+          Next
+          <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</nav>
+<!-- INFORMATIVE PATIENT CARE ASSURANCE BANNER -->
+<section class="mt-space-xl bg-surface-container-low rounded-2xl p-space-lg border border-outline-variant/80 flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[28px]">shield_with_heart</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Need assistance choosing the right specialist?</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Our clinical navigation concierges are available 24/7 to review your symptoms and coordinate your care pathway.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 flex-shrink-0 w-full md:w-auto">
+<button class="w-full md:w-auto px-5 py-2.5 rounded-lg border border-outline-variant bg-[#FFFFFF] text-primary hover:bg-surface-container font-label-md text-label-md font-semibold transition-colors" type="button">
+          Call (800) HEAL-SYNC
+        </button>
+<button class="w-full md:w-auto px-5 py-2.5 rounded-lg bg-secondary text-on-secondary hover:bg-[#8F3000] font-label-md text-label-md font-semibold transition-colors shadow-sm" type="button">
+          Start Clinical Chat
+        </button>
+</div>
+</section>
+</main>
+<!-- SHARED COMPONENT: Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant mt-space-3xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-lg py-space-xl max-w-7xl mx-auto gap-space-md">
+<!-- Footer Brand & Copyright -->
+<div class="flex flex-col gap-1 text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-2">
+<span class="text-title-md font-title-md font-bold text-primary">HealSync</span>
+<span class="text-caption font-caption text-outline px-2 py-0.5 bg-surface-container rounded">Care Portal</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-md">
+          © 2025 HealSync Healthcare Systems Inc. Restorative, Human-Centered Clinical Care.
+        </p>
+</div>
+<!-- Compliance & Legal Navigation Links -->
+<nav aria-label="Legal and Compliance" class="flex flex-wrap justify-center gap-x-space-md gap-y-2">
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary underline transition-colors duration-150" href="#">Privacy Policy</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary underline transition-colors duration-150" href="#">Terms of Service</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary underline transition-colors duration-150" href="#">HIPAA Compliance</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary underline transition-colors duration-150" href="#">Emergency Protocols</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary underline transition-colors duration-150" href="#">Contact Support</a>
+</nav>
+</div>
+</footer>
+</body></html>
