@@ -23,13 +23,14 @@ Full-stack hospital doctor-patient appointment management built with Next.js, Ty
 npm install
 ```
 
-2. Set your PostgreSQL connection URL in `.env`:
+2. Set your Supabase PostgreSQL URLs in `.env`:
 
 ```bash
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require"
+DATABASE_URL="postgresql://POOLER_USER:URL_ENCODED_PASSWORD@POOLER_HOST:6543/postgres?sslmode=require&pgbouncer=true"
+DIRECT_URL="postgresql://POOLER_USER:URL_ENCODED_PASSWORD@POOLER_HOST:5432/postgres?sslmode=require"
 ```
 
-Use the connection string from your database provider. URL-encode special characters in the password. Add an `AUTH_SECRET` value to `.env` for signed sessions.
+Use the transaction pooler URL for `DATABASE_URL` and the session pooler URL for `DIRECT_URL`. Copy both from Supabase's **Connect** dialog and URL-encode special characters in the password. Add a random `AUTH_SECRET` value to `.env` for signed sessions.
 
 3. Apply migrations, generate Prisma Client, and load demo data:
 
@@ -45,7 +46,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-For Netlify, add `DATABASE_URL` (and `AUTH_SECRET`) under **Project configuration → Environment variables**. Use the same hosted PostgreSQL database URL there; environment changes take effect on a new deploy. Netlify's serverless functions do not provide persistent shared local disk storage.
+For Netlify, add `DATABASE_URL`, `DIRECT_URL`, and `AUTH_SECRET` under **Project configuration → Environment variables**. Environment changes take effect on a new deploy. Netlify's serverless functions do not provide persistent shared local disk storage.
 
 ## Development Credentials
 

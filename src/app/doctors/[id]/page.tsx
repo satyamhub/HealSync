@@ -7,7 +7,7 @@ import { Card, PageShell, SectionTitle } from "@/components/ui/card";
 import { Input, Label, Select, Textarea } from "@/components/ui/form";
 import { availableSlots } from "@/lib/appointments";
 import { prisma } from "@/lib/prisma";
-import { dateInputValue, formatCurrencyInr } from "@/lib/utils";
+import { dateInputValue, formatCurrencyInr, languageListText } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +31,7 @@ export default async function DoctorProfilePage({ params, searchParams }: { para
               <Info label="Experience" value={`${doctor.experience} years`} />
               <Info label="Qualification" value={doctor.qualification || "Not provided"} />
               <Info label="Consultation Fee" value={formatCurrencyInr(doctor.consultationFee)} />
-              <Info label="Languages" value={doctor.languages.join(", ") || "English"} />
+              <Info label="Languages" value={languageListText(doctor.languages, "English")} />
               <Info label="Location" value={doctor.location || "Main hospital"} />
             </dl>
           </Card>

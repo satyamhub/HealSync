@@ -10,6 +10,8 @@ export default defineConfig({
     seed: "tsx prisma/seed.ts",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    // Use the session pooler for migrations when configured; serverless app
+    // queries use DATABASE_URL (transaction pooler).
+    url: process.env.DIRECT_URL ?? env("DATABASE_URL"),
   },
 });

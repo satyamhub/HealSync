@@ -6,6 +6,7 @@ import { Input, Label, Select, Textarea } from "@/components/ui/form";
 import { Role } from "@/generated/prisma/enums";
 import { doctorContext } from "@/lib/data";
 import { prisma } from "@/lib/prisma";
+import { languageListText } from "@/lib/utils";
 
 export default async function DoctorProfilePage() {
   const { doctor, unread } = await doctorContext();
@@ -23,7 +24,7 @@ export default async function DoctorProfilePage() {
             <Label label="Experience"><Input name="experience" type="number" defaultValue={doctor.experience} /></Label>
             <Label label="Consultation fee"><Input name="consultationFee" type="number" defaultValue={doctor.consultationFee} /></Label>
             <Label label="License number"><Input name="licenseNumber" defaultValue={doctor.licenseNumber || ""} /></Label>
-            <Label label="Languages"><Input name="languages" defaultValue={doctor.languages.join(", ")} /></Label>
+            <Label label="Languages"><Input name="languages" defaultValue={languageListText(doctor.languages)} /></Label>
             <Label label="Location"><Input name="location" defaultValue={doctor.location || ""} /></Label>
             <Label label="Biography"><Textarea name="biography" defaultValue={doctor.biography || ""} /></Label>
             <Button className="md:col-span-2">Save profile</Button>

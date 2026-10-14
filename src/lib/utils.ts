@@ -13,6 +13,11 @@ export function formatCurrencyInr(amount: number) {
   }).format(amount);
 }
 
+export function languageListText(value: string | string[] | null | undefined, fallback = "") {
+  const languages = Array.isArray(value) ? value : typeof value === "string" ? value.split(",") : [];
+  return languages.map((language) => language.trim()).filter(Boolean).join(", ") || fallback;
+}
+
 export function toDateOnly(value: string | Date) {
   const date = value instanceof Date ? value : new Date(`${value}T00:00:00`);
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
