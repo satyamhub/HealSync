@@ -1,11 +1,11 @@
 import { PrismaClient } from "../src/generated/prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { hash } from "bcryptjs";
 import { addDays } from "date-fns";
 import { AppointmentStatus, DoctorApprovalStatus, Role, UserStatus } from "../src/generated/prisma/enums";
 
 const prisma = new PrismaClient({
-  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/healsync" }),
+  adapter: new PrismaBetterSqlite3({ url: process.env.DATABASE_URL || "file:./healsync.db" }),
 });
 
 const departments = [
@@ -64,7 +64,7 @@ async function main() {
         biography: "Experienced clinician focused on patient-first care and clear follow-up plans.",
         consultationFee: 500 + i * 75,
         licenseNumber: `MED-${1000 + i}`,
-        languages: ["English", "Hindi"],
+        languages: "English, Hindi",
         location: "HealSync Main Hospital",
         approvalStatus: DoctorApprovalStatus.APPROVED,
       },

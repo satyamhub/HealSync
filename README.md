@@ -1,6 +1,6 @@
 # HealSync
 
-Full-stack hospital doctor-patient appointment management built with Next.js, TypeScript, Tailwind CSS, Prisma, PostgreSQL, Zod, bcrypt, Lucide, date-fns, Recharts, and Vitest.
+Full-stack hospital doctor-patient appointment management built with Next.js, TypeScript, Tailwind CSS, Prisma, SQLite, Zod, bcrypt, Lucide, date-fns, Recharts, and Vitest.
 
 ## Features
 
@@ -23,39 +23,29 @@ Full-stack hospital doctor-patient appointment management built with Next.js, Ty
 npm install
 ```
 
-2. Create a local environment file:
+2. Set the local file database URL in `.env`:
 
 ```bash
-cp .env.example .env
+DATABASE_URL="file:./healsync.db"
 ```
 
-3. Update `DATABASE_URL` in `.env` for your PostgreSQL database.
+Add an `AUTH_SECRET` value to `.env` for signed sessions.
 
-4. Generate Prisma Client:
+3. Create the database, generate Prisma Client, and load demo data:
 
 ```bash
-npm run prisma:generate
+npm run db:setup
 ```
 
-5. Run migrations:
-
-```bash
-npm run db:migrate
-```
-
-6. Seed development data:
-
-```bash
-npm run db:seed
-```
-
-7. Start the app:
+4. Start the app:
 
 ```bash
 npm run dev
 ```
 
 Open `http://localhost:3000`.
+
+The SQLite database is stored in `healsync.db` and is excluded from Git. SQLite works for local development and single-instance hosting. Netlify's serverless functions do not provide persistent shared local disk storage, so use a hosted database such as Supabase Postgres for a reliable Netlify deployment.
 
 ## Development Credentials
 

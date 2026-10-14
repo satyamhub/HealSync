@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+/healsync.db
+/healsync.db-journal
+/healsync.db-shm
+/healsync.db-wal
