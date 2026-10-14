@@ -31,7 +31,7 @@ export default async function DoctorProfilePage({ params, searchParams }: { para
               <Info label="Experience" value={`${doctor.experience} years`} />
               <Info label="Qualification" value={doctor.qualification || "Not provided"} />
               <Info label="Consultation Fee" value={formatCurrencyInr(doctor.consultationFee)} />
-              <Info label="Languages" value={doctor.languages || "English"} />
+              <Info label="Languages" value={doctor.languages.join(", ") || "English"} />
               <Info label="Location" value={doctor.location || "Main hospital"} />
             </dl>
           </Card>

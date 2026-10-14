@@ -33,7 +33,7 @@ export async function updateDoctorProfileAction(formData: FormData) {
     where: { userId: user.id },
     data: {
       ...data,
-      languages: data.languages?.split(",").map((item) => item.trim()).filter(Boolean).join(", ") || "",
+      languages: data.languages?.split(",").map((item) => item.trim()).filter(Boolean) || [],
     },
   });
   revalidatePath("/doctor/profile");

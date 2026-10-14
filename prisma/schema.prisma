@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 enum Role {
@@ -94,7 +94,7 @@ model Doctor {
   biography       String?
   consultationFee Int                  @default(0)
   licenseNumber   String?
-  languages       String               @default("")
+  languages       String[]             @default([])
   location        String?
   profilePhoto    String?
   approvalStatus  DoctorApprovalStatus @default(PENDING)

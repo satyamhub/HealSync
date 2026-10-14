@@ -1,6 +1,6 @@
 # HealSync
 
-Full-stack hospital doctor-patient appointment management built with Next.js, TypeScript, Tailwind CSS, Prisma, SQLite, Zod, bcrypt, Lucide, date-fns, Recharts, and Vitest.
+Full-stack hospital doctor-patient appointment management built with Next.js, TypeScript, Tailwind CSS, Prisma, PostgreSQL, Zod, bcrypt, Lucide, date-fns, Recharts, and Vitest.
 
 ## Features
 
@@ -23,15 +23,15 @@ Full-stack hospital doctor-patient appointment management built with Next.js, Ty
 npm install
 ```
 
-2. Set the local file database URL in `.env`:
+2. Set your PostgreSQL connection URL in `.env`:
 
 ```bash
-DATABASE_URL="file:./healsync.db"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require"
 ```
 
-Add an `AUTH_SECRET` value to `.env` for signed sessions.
+Use the connection string from your database provider. URL-encode special characters in the password. Add an `AUTH_SECRET` value to `.env` for signed sessions.
 
-3. Create the database, generate Prisma Client, and load demo data:
+3. Apply migrations, generate Prisma Client, and load demo data:
 
 ```bash
 npm run db:setup
@@ -45,7 +45,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-The SQLite database is stored in `healsync.db` and is excluded from Git. SQLite works for local development and single-instance hosting. Netlify's serverless functions do not provide persistent shared local disk storage, so use a hosted database such as Supabase Postgres for a reliable Netlify deployment.
+For Netlify, add `DATABASE_URL` (and `AUTH_SECRET`) under **Project configuration → Environment variables**. Use the same hosted PostgreSQL database URL there; environment changes take effect on a new deploy. Netlify's serverless functions do not provide persistent shared local disk storage.
 
 ## Development Credentials
 
