@@ -1,11 +1,11 @@
+import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { hash } from "bcryptjs";
-import { addDays } from "date-fns";
-import { AppointmentStatus, DoctorApprovalStatus, Role, UserStatus } from "../src/generated/prisma/enums";
+import { Role, DoctorApprovalStatus, UserStatus } from "../src/generated/prisma/enums";
 
 const prisma = new PrismaClient({
-  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+  adapter: new PrismaPg({ connectionString: process.env.DIRECT_URL || process.env.DATABASE_URL }),
 });
 
 const departments = [
@@ -21,115 +21,130 @@ const departments = [
   ["Dentistry", "Dental care and oral health.", "Tooth"],
   ["Psychiatry", "Mental health and counselling.", "Mind"],
   ["Gastroenterology", "Digestive system and liver care.", "Digest"],
-];
+] as const;
 
 const doctorNames = [
   "Dr. Rahul Sharma", "Dr. Ananya Iyer", "Dr. Kabir Mehta", "Dr. Nisha Rao", "Dr. Priya Nair",
   "Dr. Arjun Kapoor", "Dr. Meera Sen", "Dr. Vikram Joshi", "Dr. Farah Khan", "Dr. Dev Patel",
 ];
 
-async function main() {
-  await prisma.consultation.deleteMany();
-  await prisma.appointment.deleteMany();
-  await prisma.notification.deleteMany();
-  await prisma.auditLog.deleteMany();
-  await prisma.doctorLeave.deleteMany();
-  await prisma.availability.deleteMany();
-  await prisma.doctor.deleteMany();
-  await prisma.patient.deleteMany();
-  await prisma.session.deleteMany();
-  await prisma.user.deleteMany();
-  await prisma.department.deleteMany();
-
-  const passwordHash = await hash("Password@123", 12);
-  const admin = await prisma.user.create({
-    data: { name: "Admin User", email: "admin@healsync.local", passwordHash, role: Role.ADMIN, status: UserStatus.ACTIVE },
-  });
-
-  const deptRecords = await Promise.all(departments.map(([name, description, icon]) => prisma.department.create({ data: { name, description, icon } })));
-
-  const doctors = [];
-  for (let i = 0; i < doctorNames.length; i++) {
-    const department = deptRecords[i % deptRecords.length];
-    const user = await prisma.user.create({
-      data: { name: doctorNames[i], email: `doctor${i + 1}@healsync.local`, passwordHash, role: Role.DOCTOR, status: UserStatus.ACTIVE },
-    });
-    const doctor = await prisma.doctor.create({
-      data: {
-        userId: user.id,
-        departmentId: department.id,
-        specialization: i === 0 ? "Interventional Cardiology" : `${department.name} Specialist`,
-        qualification: "MBBS, MD",
-        experience: 5 + i,
-        biography: "Experienced clinician focused on patient-first care and clear follow-up plans.",
-        consultationFee: 500 + i * 75,
-        licenseNumber: `MED-${1000 + i}`,
-        languages: ["English", "Hindi"],
-        location: "HealSync Main Hospital",
-        approvalStatus: DoctorApprovalStatus.APPROVED,
-      },
-    });
-    doctors.push(doctor);
-    for (const dayOfWeek of [1, 2, 3, 4, 5, 6]) {
-      await prisma.availability.create({ data: { doctorId: doctor.id, dayOfWeek, startTime: "09:00", endTime: dayOfWeek === 6 ? "12:00" : "13:00", slotDuration: 30 } });
+async function ensureUser(input: { name: string; email: string; role: Role; passwordHash: string; phone?: string }) {
+  const existing = await prisma.user.findUnique({ where: { email: input.email } });
+  if (existing) {
+    if (existing.role !== input.role) {
+      throw new Error(`Cannot seed ${input.email}: an account with a different role already uses this email.`);
     }
+    return { user: existing, created: false };
+  }
+  const user = await prisma.user.create({
+    data: { ...input, status: UserStatus.ACTIVE },
+  });
+  return { user, created: true };
+}
+
+async function main() {
+  const passwordHash = await hash("Password@123", 12);
+  let newDoctors = 0;
+  let newPatients = 0;
+  let newDepartments = 0;
+
+  const plannedUsers = [
+    ...doctorNames.map((_, i) => ({ email: `doctor${i + 1}@healsync.local`, role: Role.DOCTOR })),
+    ...Array.from({ length: 5 }, (_, i) => ({ email: `patient${i + 1}@healsync.local`, role: Role.PATIENT })),
+  ];
+  const existingPlannedUsers = await prisma.user.findMany({
+    where: { email: { in: plannedUsers.map((item) => item.email) } },
+    select: { email: true, role: true },
+  });
+  const roleConflicts = existingPlannedUsers.filter((user) =>
+    user.role !== plannedUsers.find((item) => item.email === user.email)?.role,
+  );
+  if (roleConflicts.length) {
+    throw new Error(`Seed stopped before writing data: role conflict for ${roleConflicts.map((user) => user.email).join(", ")}.`);
   }
 
-  const patients = [];
-  for (let i = 0; i < 20; i++) {
-    const user = await prisma.user.create({
-      data: { name: `Patient ${i + 1}`, email: `patient${i + 1}@healsync.local`, phone: `90000000${String(i).padStart(2, "0")}`, passwordHash, role: Role.PATIENT, status: UserStatus.ACTIVE },
-    });
-    patients.push(await prisma.patient.create({
-      data: { userId: user.id, gender: i % 2 ? "Female" : "Male", bloodGroup: ["A+", "B+", "O+", "AB+"][i % 4], address: `Sample address ${i + 1}`, emergencyContact: `98888888${String(i).padStart(2, "0")}` },
-    }));
+  const existingAdmin = await prisma.user.findUnique({ where: { email: "admin@healsync.local" } });
+  if (!existingAdmin) {
+    await ensureUser({ name: "Admin User", email: "admin@healsync.local", role: Role.ADMIN, passwordHash });
+  } else if (existingAdmin.role !== Role.ADMIN) {
+    console.log("Kept the existing admin@healsync.local account unchanged because it has a different role.");
   }
 
-  const statuses = [AppointmentStatus.REQUESTED, AppointmentStatus.ACCEPTED, AppointmentStatus.COMPLETED, AppointmentStatus.CANCELLED, AppointmentStatus.REJECTED];
-  for (let i = 0; i < 18; i++) {
-    const doctor = doctors[i % doctors.length];
-    const patient = patients[i % patients.length];
-    const date = addDays(new Date(), i - 4);
-    date.setHours(0, 0, 0, 0);
-    const startTime = `${String(9 + (i % 4)).padStart(2, "0")}:00`;
-    const status = statuses[i % statuses.length];
-    const activeStatuses: AppointmentStatus[] = [AppointmentStatus.REQUESTED, AppointmentStatus.ACCEPTED, AppointmentStatus.COMPLETED];
-    const active = activeStatuses.includes(status);
-    const appointment = await prisma.appointment.create({
-      data: {
-        patientId: patient.id,
-        doctorId: doctor.id,
-        departmentId: doctor.departmentId!,
-        appointmentDate: date,
-        startTime,
-        endTime: `${String(10 + (i % 4)).padStart(2, "0")}:00`,
-        reason: "Follow-up consultation and care planning.",
-        status,
-        bookingKey: active ? `${doctor.id}:${date.toISOString().slice(0, 10)}:${startTime}` : null,
-        patientSlotKey: active ? `${patient.id}:${date.toISOString().slice(0, 10)}:${startTime}` : null,
-        rejectionReason: status === AppointmentStatus.REJECTED ? "Doctor unavailable for this slot." : null,
-        cancellationReason: status === AppointmentStatus.CANCELLED ? "Cancelled by patient." : null,
-      },
+  const departmentRecords = [];
+  for (const [name, description, icon] of departments) {
+    const existing = await prisma.department.findUnique({ where: { name } });
+    const department = existing ?? await prisma.department.create({ data: { name, description, icon } });
+    departmentRecords.push(department);
+    if (!existing) newDepartments++;
+  }
+
+  for (let i = 0; i < doctorNames.length; i++) {
+    const { user, created } = await ensureUser({
+      name: doctorNames[i],
+      email: `doctor${i + 1}@healsync.local`,
+      role: Role.DOCTOR,
+      passwordHash,
     });
-    if (status === AppointmentStatus.COMPLETED) {
-      await prisma.consultation.create({
-        data: { appointmentId: appointment.id, doctorId: doctor.id, patientId: patient.id, symptoms: "Routine symptoms", diagnosis: "Stable condition", notes: "Patient advised rest and follow-up.", prescription: "As prescribed by clinician." },
+    const department = departmentRecords[i % departmentRecords.length];
+    let doctor = await prisma.doctor.findUnique({ where: { userId: user.id } });
+    if (!doctor) {
+      doctor = await prisma.doctor.create({
+        data: {
+          userId: user.id,
+          departmentId: department.id,
+          specialization: i === 0 ? "Interventional Cardiology" : `${department.name} Specialist`,
+          qualification: "MBBS, MD",
+          experience: 5 + i,
+          biography: "Experienced clinician focused on patient-first care and clear follow-up plans.",
+          consultationFee: 500 + i * 75,
+          licenseNumber: `MED-${1000 + i}`,
+          languages: ["English", "Hindi"],
+          location: "HealSync Main Hospital",
+          approvalStatus: DoctorApprovalStatus.APPROVED,
+        },
+      });
+    }
+    if (created) newDoctors++;
+
+    for (const dayOfWeek of [1, 2, 3, 4, 5, 6]) {
+      await prisma.availability.upsert({
+        where: { doctorId_dayOfWeek: { doctorId: doctor.id, dayOfWeek } },
+        create: { doctorId: doctor.id, dayOfWeek, startTime: "09:00", endTime: dayOfWeek === 6 ? "12:00" : "13:00", slotDuration: 30 },
+        update: {},
       });
     }
   }
 
-  await prisma.notification.createMany({
-    data: [
-      { userId: admin.id, title: "Seed complete", message: "Development data is ready." },
-      { userId: patients[0].userId, title: "Appointment requested", message: "Your appointment request was submitted.", type: "APPOINTMENT" },
-      { userId: doctors[0].userId, title: "New appointment request", message: "A patient requested an appointment.", type: "APPOINTMENT" },
-    ],
-  });
+  for (let i = 0; i < 5; i++) {
+    const { user, created } = await ensureUser({
+      name: `Sample Patient ${i + 1}`,
+      email: `patient${i + 1}@healsync.local`,
+      role: Role.PATIENT,
+      phone: `90000000${String(i).padStart(2, "0")}`,
+      passwordHash,
+    });
+    await prisma.patient.upsert({
+      where: { userId: user.id },
+      create: {
+        userId: user.id,
+        gender: i % 2 ? "Female" : "Male",
+        bloodGroup: ["A+", "B+", "O+", "AB+"][i % 4],
+        address: `Sample address ${i + 1}`,
+        emergencyContact: `98888888${String(i).padStart(2, "0")}`,
+      },
+      update: {},
+    });
+    if (created) newPatients++;
+  }
 
-  console.log("Seed complete.");
-  console.log("Admin: admin@healsync.local / Password@123");
-  console.log("Doctor: doctor1@healsync.local / Password@123");
-  console.log("Patient: patient1@healsync.local / Password@123");
+  const [doctorCount, patientCount, departmentCount] = await Promise.all([
+    prisma.doctor.count(),
+    prisma.patient.count(),
+    prisma.department.count(),
+  ]);
+  console.log(`Seed complete. Added ${newDoctors} doctors, ${newPatients} patients, and ${newDepartments} departments.`);
+  console.log(`Current totals: ${doctorCount} doctors, ${patientCount} patients, ${departmentCount} departments.`);
+  console.log("New demo accounts use password Password@123; existing account passwords were left unchanged.");
 }
 
 main().finally(async () => prisma.$disconnect());
